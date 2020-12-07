@@ -1,0 +1,3028 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zodiac Cipher</title>
+    <style>
+        input[type=text],
+        textarea {
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+            width: 11px;
+            outline: none;
+            height: 11px;
+            border-radius: 3px;
+            margin-top: 6px;
+            border: 1px solid #DDDDDD;
+            text-align: center;
+        }
+
+        label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            /* not part of solution */
+            margin-top: -11px;
+
+        }
+
+        input[type=text]:focus,
+        textarea:focus {
+            box-shadow: 0 0 5px #02d9e9;
+            border: 1px solid #02d9e9;
+        }
+
+        .columntitle {
+            display: inline-block;
+            position: absolute;
+            text-align: center;
+            /* not part of solution */
+            height: 20px;
+            text-align: center;
+            font-family: arial;
+            color: #00874f;
+            font-size: 19px;
+            font-weight: normal;
+            cursor: default;
+            width: 138px;
+
+        }
+
+        .row {
+
+            width: 400px;
+            height: 20px;
+            position: relative;
+
+        }
+
+        .column {
+            display: inline-block;
+            width: 140px;
+            height: 250px;
+            border-radius: 3px;
+            border: 1px solid grey;
+            background-color: white;
+        }
+
+        .field {
+            display: inline-block;
+            border-radius: 3px;
+            width: 599px;
+            height: 293px;
+            border: 1px solid grey;
+            background-color: rgb(245, 245, 245);
+        }
+
+        .text {
+            font-family: arial;
+            color: black;
+            font-size: 12px;
+
+        }
+    </style>
+</head>
+
+<body style="margin: 0;">
+    <div style="display: inline-block; margin-left: 25px;">
+        <div class="title" style="text-align: center; color: grey;font-size: 40px;width: 330px;">
+            408 Cipher
+        </div>
+        <div class="row">
+
+            <input type="text" class="triangle" value="*" disabled="disabled">
+            <input type="text" class="hsquare" value="*" disabled="disabled">
+            <input type="text" class="P" value="*" disabled="disabled">
+            <input type="text" class="dash" value="*" disabled="disabled">
+            <input type="text" class="Z" value="*" disabled="disabled">
+            <input type="text" class="dash" value="*" disabled="disabled">
+            <input type="text" class="u" value="*" disabled="disabled">
+            <input type="text" class="B" value="*" disabled="disabled">
+            <input type="text" class="hsquare" value="*" disabled="disabled">
+            <input type="text" class="rK" value="*" disabled="disabled">
+            <input type="text" class="O" value="*" disabled="disabled">
+            <input type="text" class="R" value="*" disabled="disabled">
+            <input type="text" class="dK" value="*" disabled="disabled">
+            <input type="text" class="rP" value="*" disabled="disabled">
+            <input type="text" class="X" value="*" disabled="disabled">
+            <input type="text" class="dK" value="*" disabled="disabled">
+            <input type="text" class="B" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="W" value="*" disabled="disabled">
+            <input type="text" class="V" value="*" disabled="disabled">
+            <input type="text" class="plus" value="*" disabled="disabled">
+            <input type="text" class="rE" value="*" disabled="disabled">
+            <input type="text" class="G" value="*" disabled="disabled">
+            <input type="text" class="y" value="*" disabled="disabled">
+            <input type="text" class="F" value="*" disabled="disabled">
+            <input type="text" class="dO" value="*" disabled="disabled">
+            <input type="text" class="triangle" value="*" disabled="disabled">
+            <input type="text" class="H" value="*" disabled="disabled">
+            <input type="text" class="P" value="*" disabled="disabled">
+            <input type="text" class="dsquare" value="*" disabled="disabled">
+            <input type="text" class="K" value="*" disabled="disabled">
+            <input type="text" class="ij" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="y" value="*" disabled="disabled">
+            <input type="text" class="rE" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="M" value="*" disabled="disabled">
+            <input type="text" class="J" value="*" disabled="disabled">
+            <input type="text" class="y" value="*" disabled="disabled">
+            <input type="text" class="dV" value="*" disabled="disabled">
+            <input type="text" class="u" value="*" disabled="disabled">
+            <input type="text" class="I" value="*" disabled="disabled">
+            <input type="text" class="rK" value="*" disabled="disabled">
+            <input type="text" class="dtriangle" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="T" value="*" disabled="disabled">
+            <input type="text" class="dT" value="*" disabled="disabled">
+            <input type="text" class="N" value="*" disabled="disabled">
+            <input type="text" class="Qr" value="*" disabled="disabled">
+            <input type="text" class="y" value="*" disabled="disabled">
+            <input type="text" class="D" value="*" disabled="disabled">
+            <input type="text" class="fO" value="*" disabled="disabled">
+            <input type="text" class="hlO" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="S" value="*" disabled="disabled">
+            <input type="text" class="vlO" value="*" disabled="disabled">
+            <input type="text" class="dash" value="*" disabled="disabled">
+            <input type="text" class="triangle" value="*" disabled="disabled">
+            <input type="text" class="fsquare" value="*" disabled="disabled">
+            <input type="text" class="B" value="*" disabled="disabled">
+            <input type="text" class="P" value="*" disabled="disabled">
+            <input type="text" class="O" value="*" disabled="disabled">
+            <input type="text" class="R" value="*" disabled="disabled">
+            <input type="text" class="A" value="*" disabled="disabled">
+            <input type="text" class="u" value="*" disabled="disabled">
+            <input type="text" class="hsquare" value="*" disabled="disabled">
+            <input type="text" class="rF" value="*" disabled="disabled">
+            <input type="text" class="R" value="*" disabled="disabled">
+            <input type="text" class="rL" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="E" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="rK" value="*" disabled="disabled">
+            <input type="text" class="dV" value="*" disabled="disabled">
+            <input type="text" class="L" value="*" disabled="disabled">
+            <input type="text" class="M" value="*" disabled="disabled">
+            <input type="text" class="Z" value="*" disabled="disabled">
+            <input type="text" class="J" value="*" disabled="disabled">
+            <input type="text" class="rD" value="*" disabled="disabled">
+            <input type="text" class="rR" value="*" disabled="disabled">
+            <input type="text" class="rdash" value="*" disabled="disabled">
+            <input type="text" class="rP" value="*" disabled="disabled">
+            <input type="text" class="F" value="*" disabled="disabled">
+            <input type="text" class="H" value="*" disabled="disabled">
+            <input type="text" class="V" value="*" disabled="disabled">
+            <input type="text" class="W" value="*" disabled="disabled">
+            <input type="text" class="rE" value="*" disabled="disabled">
+            <input type="text" class="ftriangle" value="*" disabled="disabled">
+            <input type="text" class="y" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="dsquare" value="*" disabled="disabled">
+            <input type="text" class="plus" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="G" value="*" disabled="disabled">
+            <input type="text" class="D" value="*" disabled="disabled">
+            <input type="text" class="triangle" value="*" disabled="disabled">
+            <input type="text" class="K" value="*" disabled="disabled">
+            <input type="text" class="I" value="*" disabled="disabled">
+            <input type="text" class="hlO" value="*" disabled="disabled">
+            <input type="text" class="dO" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="X" value="*" disabled="disabled">
+            <input type="text" class="ftriangle" value="*" disabled="disabled">
+            <input type="text" class="fO" value="*" disabled="disabled">
+            <input type="text" class="zodiac" value="*" disabled="disabled">
+            <input type="text" class="S" value="*" disabled="disabled">
+            <input type="text" class="vlO" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="R" value="*" disabled="disabled">
+            <input type="text" class="N" value="*" disabled="disabled">
+            <input type="text" class="dT" value="*" disabled="disabled">
+            <input type="text" class="I" value="*" disabled="disabled">
+            <input type="text" class="y" value="*" disabled="disabled">
+            <input type="text" class="E" value="*" disabled="disabled">
+            <input type="text" class="rL" value="*" disabled="disabled">
+            <input type="text" class="O" value="*" disabled="disabled">
+            <input type="text" class="ftriangle" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="G" value="*" disabled="disabled">
+            <input type="text" class="B" value="*" disabled="disabled">
+            <input type="text" class="dL" value="*" disabled="disabled">
+            <input type="text" class="Qr" value="*" disabled="disabled">
+            <input type="text" class="S" value="*" disabled="disabled">
+            <input type="text" class="fsquare" value="*" disabled="disabled">
+            <input type="text" class="B" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="L" value="*" disabled="disabled">
+            <input type="text" class="rD" value="*" disabled="disabled">
+            <input type="text" class="dash" value="*" disabled="disabled">
+            <input type="text" class="P" value="*" disabled="disabled">
+            <input type="text" class="fsquare" value="*" disabled="disabled">
+            <input type="text" class="B" value="*" disabled="disabled">
+            <input type="text" class="dsquare" value="*" disabled="disabled">
+            <input type="text" class="X" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="E" value="*" disabled="disabled">
+            <input type="text" class="H" value="*" disabled="disabled">
+            <input type="text" class="M" value="*" disabled="disabled">
+            <input type="text" class="u" value="*" disabled="disabled">
+            <input type="text" class="dV" value="*" disabled="disabled">
+            <input type="text" class="R" value="*" disabled="disabled">
+            <input type="text" class="R" value="*" disabled="disabled">
+            <input type="text" class="rK" value="*" disabled="disabled">
+        </div>
+        <div style="width:400px; height: 20px;"></div>
+        <div class="row">
+            <input type="text" class="rC" value="*" disabled="disabled">
+            <input type="text" class="Z" value="*" disabled="disabled">
+            <input type="text" class="K" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="rP" value="*" disabled="disabled">
+            <input type="text" class="I" value="*" disabled="disabled">
+            <input type="text" class="hlO" value="*" disabled="disabled">
+            <input type="text" class="W" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="ij" value="*" disabled="disabled">
+            <input type="text" class="ftriangle" value="*" disabled="disabled">
+            <input type="text" class="fO" value="*" disabled="disabled">
+            <input type="text" class="L" value="*" disabled="disabled">
+            <input type="text" class="M" value="*" disabled="disabled">
+            <input type="text" class="rR" value="*" disabled="disabled">
+            <input type="text" class="triangle" value="*" disabled="disabled">
+            <input type="text" class="fsquare" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="B" value="*" disabled="disabled">
+            <input type="text" class="P" value="*" disabled="disabled">
+            <input type="text" class="D" value="*" disabled="disabled">
+            <input type="text" class="R" value="*" disabled="disabled">
+            <input type="text" class="plus" value="*" disabled="disabled">
+            <input type="text" class="tj" value="*" disabled="disabled">
+            <input type="text" class="dK" value="*" disabled="disabled">
+            <input type="text" class="dO" value="*" disabled="disabled">
+            <input type="text" class="rdash" value="*" disabled="disabled">
+            <input type="text" class="N" value="*" disabled="disabled">
+            <input type="text" class="vlO" value="*" disabled="disabled">
+            <input type="text" class="rE" value="*" disabled="disabled">
+            <input type="text" class="E" value="*" disabled="disabled">
+            <input type="text" class="u" value="*" disabled="disabled">
+            <input type="text" class="H" value="*" disabled="disabled">
+            <input type="text" class="rK" value="*" disabled="disabled">
+            <input type="text" class="F" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="Z" value="*" disabled="disabled">
+            <input type="text" class="rC" value="*" disabled="disabled">
+            <input type="text" class="rP" value="*" disabled="disabled">
+            <input type="text" class="O" value="*" disabled="disabled">
+            <input type="text" class="V" value="*" disabled="disabled">
+            <input type="text" class="W" value="*" disabled="disabled">
+            <input type="text" class="I" value="*" disabled="disabled">
+            <input type="text" class="fO" value="*" disabled="disabled">
+            <input type="text" class="plus" value="*" disabled="disabled">
+            <input type="text" class="dT" value="*" disabled="disabled">
+            <input type="text" class="L" value="*" disabled="disabled">
+            <input type="text" class="hlO" value="*" disabled="disabled">
+            <input type="text" class="rL" value="*" disabled="disabled">
+            <input type="text" class="dV" value="*" disabled="disabled">
+            <input type="text" class="R" value="*" disabled="disabled">
+            <input type="text" class="dO" value="*" disabled="disabled">
+            <input type="text" class="H" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="I" value="*" disabled="disabled">
+            <input type="text" class="triangle" value="*" disabled="disabled">
+            <input type="text" class="D" value="*" disabled="disabled">
+            <input type="text" class="R" value="*" disabled="disabled">
+            <input type="text" class="square" value="*" disabled="disabled">
+            <input type="text" class="T" value="*" disabled="disabled">
+            <input type="text" class="y" value="*" disabled="disabled">
+            <input type="text" class="rR" value="*" disabled="disabled">
+            <input type="text" class="rdash" value="*" disabled="disabled">
+            <input type="text" class="rD" value="*" disabled="disabled">
+            <input type="text" class="rE" value="*" disabled="disabled">
+            <input type="text" class="dash" value="*" disabled="disabled">
+            <input type="text" class="dsquare" value="*" disabled="disabled">
+            <input type="text" class="X" value="*" disabled="disabled">
+            <input type="text" class="J" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="A" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="P" value="*" disabled="disabled">
+            <input type="text" class="fO" value="*" disabled="disabled">
+            <input type="text" class="M" value="*" disabled="disabled">
+            <input type="text" class="ftriangle" value="*" disabled="disabled">
+            <input type="text" class="R" value="*" disabled="disabled">
+            <input type="text" class="u" value="*" disabled="disabled">
+            <input type="text" class="dT" value="*" disabled="disabled">
+            <input type="text" class="hsquare" value="*" disabled="disabled">
+            <input type="text" class="L" value="*" disabled="disabled">
+            <input type="text" class="hlO" value="*" disabled="disabled">
+            <input type="text" class="N" value="*" disabled="disabled">
+            <input type="text" class="V" value="*" disabled="disabled">
+            <input type="text" class="E" value="*" disabled="disabled">
+            <input type="text" class="K" value="*" disabled="disabled">
+            <input type="text" class="H" value="*" disabled="disabled">
+            <input type="text" class="dK" value="*" disabled="disabled">
+            <input type="text" class="G" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="rR" value="*" disabled="disabled">
+            <input type="text" class="I" value="*" disabled="disabled">
+            <input type="text" class="ij" value="*" disabled="disabled">
+            <input type="text" class="rJ" value="*" disabled="disabled">
+            <input type="text" class="rK" value="*" disabled="disabled">
+            <input type="text" class="fO" value="*" disabled="disabled">
+            <input type="text" class="triangle" value="*" disabled="disabled">
+            <input type="text" class="ftriangle" value="*" disabled="disabled">
+            <input type="text" class="L" value="*" disabled="disabled">
+            <input type="text" class="M" value="*" disabled="disabled">
+            <input type="text" class="rL" value="*" disabled="disabled">
+            <input type="text" class="N" value="*" disabled="disabled">
+            <input type="text" class="A" value="*" disabled="disabled">
+            <input type="text" class="hlO" value="*" disabled="disabled">
+            <input type="text" class="Z" value="*" disabled="disabled">
+            <input type="text" class="vlO" value="*" disabled="disabled">
+            <input type="text" class="P" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="zodiac" value="*" disabled="disabled">
+            <input type="text" class="u" value="*" disabled="disabled">
+            <input type="text" class="rP" value="*" disabled="disabled">
+            <input type="text" class="rK" value="*" disabled="disabled">
+            <input type="text" class="A" value="*" disabled="disabled">
+            <input type="text" class="triangle" value="*" disabled="disabled">
+            <input type="text" class="fsquare" value="*" disabled="disabled">
+            <input type="text" class="B" value="*" disabled="disabled">
+            <input type="text" class="V" value="*" disabled="disabled">
+            <input type="text" class="W" value="*" disabled="disabled">
+            <input type="text" class="rdash" value="*" disabled="disabled">
+            <input type="text" class="plus" value="*" disabled="disabled">
+            <input type="text" class="V" value="*" disabled="disabled">
+            <input type="text" class="T" value="*" disabled="disabled">
+            <input type="text" class="dT" value="*" disabled="disabled">
+            <input type="text" class="O" value="*" disabled="disabled">
+            <input type="text" class="P" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="dV" value="*" disabled="disabled">
+            <input type="text" class="dK" value="*" disabled="disabled">
+            <input type="text" class="S" value="*" disabled="disabled">
+            <input type="text" class="rR" value="*" disabled="disabled">
+            <input type="text" class="rL" value="*" disabled="disabled">
+            <input type="text" class="rF" value="*" disabled="disabled">
+            <input type="text" class="u" value="*" disabled="disabled">
+            <input type="text" class="rE" value="*" disabled="disabled">
+            <input type="text" class="dO" value="*" disabled="disabled">
+            <input type="text" class="dtriangle" value="*" disabled="disabled">
+            <input type="text" class="D" value="*" disabled="disabled">
+            <input type="text" class="zodiac" value="*" disabled="disabled">
+            <input type="text" class="G" value="*" disabled="disabled">
+            <input type="text" class="hsquare" value="*" disabled="disabled">
+            <input type="text" class="hsquare" value="*" disabled="disabled">
+            <input type="text" class="I" value="*" disabled="disabled">
+            <input type="text" class="M" value="*" disabled="disabled">
+        </div>
+        <div style="width:400px; height: 20px;"></div>
+
+        <div class="row">
+            <input type="text" class="N" value="*" disabled="disabled">
+            <input type="text" class="rK" value="*" disabled="disabled">
+            <input type="text" class="hlO" value="*" disabled="disabled">
+            <input type="text" class="S" value="*" disabled="disabled">
+            <input type="text" class="rC" value="*" disabled="disabled">
+            <input type="text" class="E" value="*" disabled="disabled">
+            <input type="text" class="dash" value="*" disabled="disabled">
+            <input type="text" class="triangle" value="*" disabled="disabled">
+            <input type="text" class="hsquare" value="*" disabled="disabled">
+            <input type="text" class="hsquare" value="*" disabled="disabled">
+            <input type="text" class="Z" value="*" disabled="disabled">
+            <input type="text" class="rF" value="*" disabled="disabled">
+            <input type="text" class="A" value="*" disabled="disabled">
+            <input type="text" class="P" value="*" disabled="disabled">
+            <input type="text" class="fsquare" value="*" disabled="disabled">
+            <input type="text" class="B" value="*" disabled="disabled">
+            <input type="text" class="V" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="rP" value="*" disabled="disabled">
+            <input type="text" class="rE" value="*" disabled="disabled">
+            <input type="text" class="X" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="W" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="square" value="*" disabled="disabled">
+            <input type="text" class="F" value="*" disabled="disabled">
+            <input type="text" class="fsquare" value="*" disabled="disabled">
+            <input type="text" class="ftriangle" value="*" disabled="disabled">
+            <input type="text" class="rC" value="*" disabled="disabled">
+            <input type="text" class="plus" value="*" disabled="disabled">
+            <input type="text" class="dsquare" value="*" disabled="disabled">
+            <input type="text" class="triangle" value="*" disabled="disabled">
+            <input type="text" class="A" value="*" disabled="disabled">
+            <input type="text" class="triangle" value="*" disabled="disabled">
+            <input type="text" class="B" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="hsquare" value="*" disabled="disabled">
+            <input type="text" class="O" value="*" disabled="disabled">
+            <input type="text" class="T" value="*" disabled="disabled">
+            <input type="text" class="fO" value="*" disabled="disabled">
+            <input type="text" class="R" value="*" disabled="disabled">
+            <input type="text" class="u" value="*" disabled="disabled">
+            <input type="text" class="rC" value="*" disabled="disabled">
+            <input type="text" class="plus" value="*" disabled="disabled">
+            <input type="text" class="square" value="*" disabled="disabled">
+            <input type="text" class="rD" value="*" disabled="disabled">
+            <input type="text" class="y" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="square" value="*" disabled="disabled">
+            <input type="text" class="dV" value="*" disabled="disabled">
+            <input type="text" class="S" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="W" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="V" value="*" disabled="disabled">
+            <input type="text" class="Z" value="*" disabled="disabled">
+            <input type="text" class="rE" value="*" disabled="disabled">
+            <input type="text" class="G" value="*" disabled="disabled">
+            <input type="text" class="y" value="*" disabled="disabled">
+            <input type="text" class="K" value="*" disabled="disabled">
+            <input type="text" class="E" value="*" disabled="disabled">
+            <input type="text" class="square" value="*" disabled="disabled">
+            <input type="text" class="T" value="*" disabled="disabled">
+            <input type="text" class="y" value="*" disabled="disabled">
+            <input type="text" class="A" value="*" disabled="disabled">
+            <input type="text" class="triangle" value="*" disabled="disabled">
+            <input type="text" class="hsquare" value="*" disabled="disabled">
+            <input type="text" class="fsquare" value="*" disabled="disabled">
+            <input type="text" class="L" value="*" disabled="disabled">
+            <input type="text" class="dT" value="*" disabled="disabled">
+            <input type="text" class="square" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="H" value="*" disabled="disabled">
+            <input type="text" class="ij" value="*" disabled="disabled">
+            <input type="text" class="F" value="*" disabled="disabled">
+            <input type="text" class="B" value="*" disabled="disabled">
+            <input type="text" class="X" value="*" disabled="disabled">
+            <input type="text" class="triangle" value="*" disabled="disabled">
+            <input type="text" class="zodiac" value="*" disabled="disabled">
+            <input type="text" class="X" value="*" disabled="disabled">
+            <input type="text" class="A" value="*" disabled="disabled">
+            <input type="text" class="D" value="*" disabled="disabled">
+            <input type="text" class="rD" value="*" disabled="disabled">
+            <input type="text" class="rdash" value="*" disabled="disabled">
+            <input type="text" class="dtriangle" value="*" disabled="disabled">
+            <input type="text" class="L" value="*" disabled="disabled">
+            <input type="text" class="ij" value="*" disabled="disabled">
+            <input type="text" class="dK" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="square" value="*" disabled="disabled">
+            <input type="text" class="rE" value="*" disabled="disabled">
+            <input type="text" class="rD" value="*" disabled="disabled">
+            <input type="text" class="fsquare" value="*" disabled="disabled">
+            <input type="text" class="fsquare" value="*" disabled="disabled">
+            <input type="text" class="dO" value="*" disabled="disabled">
+            <input type="text" class="rE" value="*" disabled="disabled">
+            <input type="text" class="fO" value="*" disabled="disabled">
+            <input type="text" class="P" value="*" disabled="disabled">
+            <input type="text" class="O" value="*" disabled="disabled">
+            <input type="text" class="R" value="*" disabled="disabled">
+            <input type="text" class="X" value="*" disabled="disabled">
+            <input type="text" class="Qr" value="*" disabled="disabled">
+            <input type="text" class="F" value="*" disabled="disabled">
+            <input type="text" class="hsquare" value="*" disabled="disabled">
+            <input type="text" class="G" value="*" disabled="disabled">
+            <input type="text" class="rC" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="Z" value="*" disabled="disabled">
+            <input type="text" class="dsquare" value="*" disabled="disabled">
+            <input type="text" class="J" value="*" disabled="disabled">
+            <input type="text" class="T" value="*" disabled="disabled">
+            <input type="text" class="dT" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="square" value="*" disabled="disabled">
+            <input type="text" class="ftriangle" value="*" disabled="disabled">
+            <input type="text" class="J" value="*" disabled="disabled">
+            <input type="text" class="I" value="*" disabled="disabled">
+            <input type="text" class="plus" value="*" disabled="disabled">
+            <input type="text" class="rR" value="*" disabled="disabled">
+            <input type="text" class="B" value="*" disabled="disabled">
+            <input type="text" class="P" value="*" disabled="disabled">
+            <input type="text" class="Qr" value="*" disabled="disabled">
+            <input type="text" class="W" value="*" disabled="disabled">
+            <input type="text" class="dO" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="V" value="*" disabled="disabled">
+            <input type="text" class="E" value="*" disabled="disabled">
+            <input type="text" class="X" value="*" disabled="disabled">
+            <input type="text" class="rR" value="*" disabled="disabled">
+            <input type="text" class="triangle" value="*" disabled="disabled">
+            <input type="text" class="W" value="*" disabled="disabled">
+            <input type="text" class="I" value="*" disabled="disabled">
+            <input type="text" class="dO" value="*" disabled="disabled">
+            <input type="text" class="Q" value="*" disabled="disabled">
+            <input type="text" class="E" value="*" disabled="disabled">
+            <input type="text" class="H" value="*" disabled="disabled">
+            <input type="text" class="M" value="*" disabled="disabled">
+            <input type="text" class="hlO" value="*" disabled="disabled">
+            <input type="text" class="dK" value="*" disabled="disabled">
+            <input type="text" class="u" value="*" disabled="disabled">
+            <input type="text" class="I" value="*" disabled="disabled">
+            <input type="text" class="rK" value="*" disabled="disabled">
+        </div>
+    </div>
+    <div class=row style="margin-top: 20px;">
+        <input class="input" style="width: 330px; height: 20px;" type="text" name="name" id="input" value="">
+    </div>
+
+    <div class="text row" style="margin-top: 20px; font-size: 8.5px;">
+        Solution: </br>ILIKEILINGPEOEBECAUSETSSOMHFNTSOREFNTHANLWDAETORRADOVXYF
+    </div>
+    <div style="margin-left: 400px; margin-top: -653px;">
+        <div class="title" style="text-align: center; color: grey; font-size: 40px;width: 330px;">
+            340 Cipher
+        </div>
+
+        <div class="row">
+            <input type="text" class="H2" value="*" disabled="disabled">
+            <input type="text" class="E2" value="*" disabled="disabled">
+            <input type="text" class="R2" value="*" disabled="disabled">
+            <input type="text" class="rV2" value="*" disabled="disabled">
+            <input type="text" class="q2" value="*" disabled="disabled">
+            <input type="text" class="rL2" value="*" disabled="disabled">
+            <input type="text" class="fV2" value="*" disabled="disabled">
+            <input type="text" class="V2" value="*" disabled="disabled">
+            <input type="text" class="P2" value="*" disabled="disabled">
+            <input type="text" class="rK2" value="*" disabled="disabled">
+            <input type="text" class="l2" value="*" disabled="disabled">
+            <input type="text" class="usC2" value="*" disabled="disabled">
+            <input type="text" class="L2" value="*" disabled="disabled">
+            <input type="text" class="T2" value="*" disabled="disabled">
+            <input type="text" class="G2" value="*" disabled="disabled">
+            <input type="text" class="bsC2" value="*" disabled="disabled">
+            <input type="text" class="rD2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="N2" value="*" disabled="disabled">
+            <input type="text" class="q2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="B2" value="*" disabled="disabled">
+            <input type="text" class="vlo2" value="*" disabled="disabled">
+            <input type="text" class="fsquare2" value="*" disabled="disabled">
+            <input type="text" class="O2" value="*" disabled="disabled">
+            <input type="text" class="ltssquare2" value="*" disabled="disabled">
+            <input type="text" class="D2" value="*" disabled="disabled">
+            <input type="text" class="W2" value="*" disabled="disabled">
+            <input type="text" class="Y2" value="*" disabled="disabled">
+            <input type="text" class="dot2" value="*" disabled="disabled">
+            <input type="text" class="lV2" value="*" disabled="disabled">
+            <input type="text" class="rtssquare2" value="*" disabled="disabled">
+            <input type="text" class="K2" value="*" disabled="disabled">
+            <input type="text" class="rF2" value="*" disabled="disabled">
+            <input type="text" class="hlo2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="B2" value="*" disabled="disabled">
+            <input type="text" class="rY2" value="*" disabled="disabled">
+            <input type="text" class="ijrdot2" value="*" disabled="disabled">
+            <input type="text" class="rC2" value="*" disabled="disabled">
+            <input type="text" class="M2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="u2" value="*" disabled="disabled">
+            <input type="text" class="Z2" value="*" disabled="disabled">
+            <input type="text" class="G2" value="*" disabled="disabled">
+            <input type="text" class="W2" value="*" disabled="disabled">
+            <input type="text" class="vlo2" value="*" disabled="disabled">
+            <input type="text" class="hlo2" value="*" disabled="disabled">
+            <input type="text" class="L2" value="*" disabled="disabled">
+            <input type="text" class="fsquare2" value="*" disabled="disabled">
+            <input type="text" class="zodiac2" value="*" disabled="disabled">
+            <input type="text" class="H2" value="*" disabled="disabled">
+            <input type="text" class="J2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="S2" value="*" disabled="disabled">
+            <input type="text" class="q2" value="*" disabled="disabled">
+            <input type="text" class="q2" value="*" disabled="disabled">
+            <input type="text" class="triangledot2" value="*" disabled="disabled">
+            <input type="text" class="fV2" value="*" disabled="disabled">
+            <input type="text" class="rL2" value="*" disabled="disabled">
+            <input type="text" class="ftriangle2" value="*" disabled="disabled">
+            <input type="text" class="rtssquare2" value="*" disabled="disabled">
+            <input type="text" class="V2" value="*" disabled="disabled">
+            <input type="text" class="lsC2" value="*" disabled="disabled">
+            <input type="text" class="q2" value="*" disabled="disabled">
+            <input type="text" class="O2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="R2" value="*" disabled="disabled">
+            <input type="text" class="K2" value="*" disabled="disabled">
+            <input type="text" class="bsC2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="square2" value="*" disabled="disabled">
+            <input type="text" class="triangle2" value="*" disabled="disabled">
+            <input type="text" class="M2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="zodiac2" value="*" disabled="disabled">
+            <input type="text" class="fT2" value="*" disabled="disabled">
+            <input type="text" class="tj2" value="*" disabled="disabled">
+            <input type="text" class="rD2" value="*" disabled="disabled">
+            <input type="text" class="l2" value="*" disabled="disabled">
+            <input type="text" class="fcircle2" value="*" disabled="disabled">
+            <input type="text" class="F2" value="*" disabled="disabled">
+            <input type="text" class="P2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="fP2" value="*" disabled="disabled">
+            <input type="text" class="rsC2" value="*" disabled="disabled">
+            <input type="text" class="rK2" value="*" disabled="disabled">
+            <input type="text" class="dash2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="q2" value="*" disabled="disabled">
+            <input type="text" class="ftriangle2" value="*" disabled="disabled">
+            <input type="text" class="R2" value="*" disabled="disabled">
+            <input type="text" class="fV2" value="*" disabled="disabled">
+            <input type="text" class="F2" value="*" disabled="disabled">
+            <input type="text" class="rL2" value="*" disabled="disabled">
+            <input type="text" class="O2" value="*" disabled="disabled">
+            <input type="text" class="line2" value="*" disabled="disabled">
+            <input type="text" class="rtssquare2" value="*" disabled="disabled">
+            <input type="text" class="rD2" value="*" disabled="disabled">
+            <input type="text" class="C2" value="*" disabled="disabled">
+            <input type="text" class="rK2" value="*" disabled="disabled">
+            <input type="text" class="F2" value="*" disabled="disabled">
+            <input type="text" class="rV2" value="*" disabled="disabled">
+            <input type="text" class="bsC2" value="*" disabled="disabled">
+            <input type="text" class="D2" value="*" disabled="disabled">
+            <input type="text" class="vlo2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="fsquare2" value="*" disabled="disabled">
+            <input type="text" class="fcircle2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="K2" value="*" disabled="disabled">
+            <input type="text" class="rQ2" value="*" disabled="disabled">
+            <input type="text" class="ltssquare2" value="*" disabled="disabled">
+            <input type="text" class="ijldot2" value="*" disabled="disabled">
+            <input type="text" class="bsC2" value="*" disabled="disabled">
+            <input type="text" class="u2" value="*" disabled="disabled">
+            <input type="text" class="rC2" value="*" disabled="disabled">
+            <input type="text" class="X2" value="*" disabled="disabled">
+            <input type="text" class="G2" value="*" disabled="disabled">
+            <input type="text" class="V2" value="*" disabled="disabled">
+            <input type="text" class="dot2" value="*" disabled="disabled">
+            <input type="text" class="zodiac2" value="*" disabled="disabled">
+            <input type="text" class="L2" value="*" disabled="disabled">
+            <input type="text" class="l2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="vlo2" value="*" disabled="disabled">
+            <input type="text" class="G2" value="*" disabled="disabled">
+            <input type="text" class="bsC2" value="*" disabled="disabled">
+            <input type="text" class="J2" value="*" disabled="disabled">
+            <input type="text" class="rF2" value="*" disabled="disabled">
+            <input type="text" class="tj2" value="*" disabled="disabled">
+            <input type="text" class="fsquare2" value="*" disabled="disabled">
+            <input type="text" class="O2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="square2" value="*" disabled="disabled">
+            <input type="text" class="N2" value="*" disabled="disabled">
+            <input type="text" class="Y2" value="*" disabled="disabled">
+            <input type="text" class="zodiac2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="squaredot2" value="*" disabled="disabled">
+            <input type="text" class="L2" value="*" disabled="disabled">
+            <input type="text" class="triangle2" value="*" disabled="disabled">
+        </div>
+
+        <div style="width:400px; height: 20px;"></div>
+        <div class="row">
+            <input type="text" class="rD2" value="*" disabled="disabled">
+            <input type="text" class="lV2" value="*" disabled="disabled">
+            <input type="text" class="M2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="rB2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="Z2" value="*" disabled="disabled">
+            <input type="text" class="R2" value="*" disabled="disabled">
+            <input type="text" class="bsC2" value="*" disabled="disabled">
+            <input type="text" class="F2" value="*" disabled="disabled">
+            <input type="text" class="B2" value="*" disabled="disabled">
+            <input type="text" class="rC2" value="*" disabled="disabled">
+            <input type="text" class="rY2" value="*" disabled="disabled">
+            <input type="text" class="A2" value="*" disabled="disabled">
+            <input type="text" class="circledot2" value="*" disabled="disabled">
+            <input type="text" class="rsC2" value="*" disabled="disabled">
+            <input type="text" class="K2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="line2" value="*" disabled="disabled">
+            <input type="text" class="zodiac2" value="*" disabled="disabled">
+            <input type="text" class="rL2" value="*" disabled="disabled">
+            <input type="text" class="u2" value="*" disabled="disabled">
+            <input type="text" class="V2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="fV2" value="*" disabled="disabled">
+            <input type="text" class="J2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="O2" value="*" disabled="disabled">
+            <input type="text" class="q2" value="*" disabled="disabled">
+            <input type="text" class="triangledot2" value="*" disabled="disabled">
+            <input type="text" class="lV2" value="*" disabled="disabled">
+            <input type="text" class="F2" value="*" disabled="disabled">
+            <input type="text" class="B2" value="*" disabled="disabled">
+            <input type="text" class="rY2" value="*" disabled="disabled">
+            <input type="text" class="line2" value="*" disabled="disabled">
+        </div>
+        <div class="row">
+            <input type="text" class="u2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="R2" value="*" disabled="disabled">
+            <input type="text" class="dash2" value="*" disabled="disabled">
+            <input type="text" class="fcircle2" value="*" disabled="disabled">
+            <input type="text" class="fT2" value="*" disabled="disabled">
+            <input type="text" class="E2" value="*" disabled="disabled">
+            <input type="text" class="l2" value="*" disabled="disabled">
+            <input type="text" class="D2" value="*" disabled="disabled">
+            <input type="text" class="Y2" value="*" disabled="disabled">
+            <input type="text" class="B2" value="*" disabled="disabled">
+            <input type="text" class="q2" value="*" disabled="disabled">
+            <input type="text" class="rB2" value="*" disabled="disabled">
+            <input type="text" class="T2" value="*" disabled="disabled">
+            <input type="text" class="M2" value="*" disabled="disabled">
+            <input type="text" class="K2" value="*" disabled="disabled">
+            <input type="text" class="O2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="bsC2" value="*" disabled="disabled">
+            <input type="text" class="lV2" value="*" disabled="disabled">
+            <input type="text" class="rC2" value="*" disabled="disabled">
+            <input type="text" class="rL2" value="*" disabled="disabled">
+            <input type="text" class="R2" value="*" disabled="disabled">
+            <input type="text" class="J2" value="*" disabled="disabled">
+            <input type="text" class="l2" value="*" disabled="disabled">
+            <input type="text" class="rtssquare2" value="*" disabled="disabled">
+            <input type="text" class="fcircle2" value="*" disabled="disabled">
+            <input type="text" class="T2" value="*" disabled="disabled">
+            <input type="text" class="rsC2" value="*" disabled="disabled">
+            <input type="text" class="M2" value="*" disabled="disabled">
+            <input type="text" class="dot2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="fP2" value="*" disabled="disabled">
+            <input type="text" class="B2" value="*" disabled="disabled">
+            <input type="text" class="F2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="zodiac2" value="*" disabled="disabled">
+            <input type="text" class="circledot2" value="*" disabled="disabled">
+            <input type="text" class="triangle2" value="*" disabled="disabled">
+            <input type="text" class="S2" value="*" disabled="disabled">
+            <input type="text" class="rY2" value="*" disabled="disabled">
+            <input type="text" class="fsquare2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="N2" value="*" disabled="disabled">
+            <input type="text" class="l2" value="*" disabled="disabled">
+            <input type="text" class="fcircle2" value="*" disabled="disabled">
+            <input type="text" class="F2" value="*" disabled="disabled">
+            <input type="text" class="B2" value="*" disabled="disabled">
+            <input type="text" class="rC2" value="*" disabled="disabled">
+            <input type="text" class="vlo2" value="*" disabled="disabled">
+            <input type="text" class="ijldot2" value="*" disabled="disabled">
+            <input type="text" class="ftriangle2" value="*" disabled="disabled">
+            <input type="text" class="R2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="rL2" value="*" disabled="disabled">
+            <input type="text" class="G2" value="*" disabled="disabled">
+            <input type="text" class="F2" value="*" disabled="disabled">
+            <input type="text" class="N2" value="*" disabled="disabled">
+            <input type="text" class="fV2" value="*" disabled="disabled">
+            <input type="text" class="rF2" value="*" disabled="disabled">
+            <input type="text" class="fcircle2" value="*" disabled="disabled">
+            <input type="text" class="bsC2" value="*" disabled="disabled">
+            <input type="text" class="rsC2" value="*" disabled="disabled">
+            <input type="text" class="rB2" value="*" disabled="disabled">
+            <input type="text" class="dot2" value="*" disabled="disabled">
+            <input type="text" class="rC2" value="*" disabled="disabled">
+            <input type="text" class="V2" value="*" disabled="disabled">
+            <input type="text" class="rsC2" value="*" disabled="disabled">
+            <input type="text" class="fT2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="rY2" value="*" disabled="disabled">
+            <input type="text" class="B2" value="*" disabled="disabled">
+            <input type="text" class="X2" value="*" disabled="disabled">
+            <input type="text" class="usC2" value="*" disabled="disabled">
+            <input type="text" class="rtssquare2" value="*" disabled="disabled">
+            <input type="text" class="ijrdot2" value="*" disabled="disabled">
+            <input type="text" class="rsC2" value="*" disabled="disabled">
+            <input type="text" class="triangle2" value="*" disabled="disabled">
+            <input type="text" class="C2" value="*" disabled="disabled">
+            <input type="text" class="E2" value="*" disabled="disabled">
+            <input type="text" class="rV2" value="*" disabled="disabled">
+            <input type="text" class="V2" value="*" disabled="disabled">
+            <input type="text" class="u2" value="*" disabled="disabled">
+            <input type="text" class="Z2" value="*" disabled="disabled">
+            <input type="text" class="fcircle2" value="*" disabled="disabled">
+            <input type="text" class="line2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="l2" value="*" disabled="disabled">
+            <input type="text" class="rC2" value="*" disabled="disabled">
+            <input type="text" class="dot2" value="*" disabled="disabled">
+            <input type="text" class="lsC2" value="*" disabled="disabled">
+            <input type="text" class="zodiac2" value="*" disabled="disabled">
+            <input type="text" class="B2" value="*" disabled="disabled">
+            <input type="text" class="K2" value="*" disabled="disabled">
+            <input type="text" class="vlo2" value="*" disabled="disabled">
+            <input type="text" class="O2" value="*" disabled="disabled">
+            <input type="text" class="q2" value="*" disabled="disabled">
+            <input type="text" class="fV2" value="*" disabled="disabled">
+            <input type="text" class="dot2" value="*" disabled="disabled">
+            <input type="text" class="rF2" value="*" disabled="disabled">
+            <input type="text" class="M2" value="*" disabled="disabled">
+            <input type="text" class="rQ2" value="*" disabled="disabled">
+            <input type="text" class="G2" value="*" disabled="disabled">
+            <input type="text" class="bsC2" value="*" disabled="disabled">
+        </div>
+        <div style="width:400px; height: 20px;"></div>
+
+        <div class="row">
+            <input type="text" class="R2" value="*" disabled="disabled">
+            <input type="text" class="rC2" value="*" disabled="disabled">
+            <input type="text" class="T2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="L2" value="*" disabled="disabled">
+            <input type="text" class="usC2" value="*" disabled="disabled">
+            <input type="text" class="circledot2" value="*" disabled="disabled">
+            <input type="text" class="C2" value="*" disabled="disabled">
+            <input type="text" class="lV2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="F2" value="*" disabled="disabled">
+            <input type="text" class="rL2" value="*" disabled="disabled">
+            <input type="text" class="W2" value="*" disabled="disabled">
+            <input type="text" class="B2" value="*" disabled="disabled">
+            <input type="text" class="l2" value="*" disabled="disabled">
+            <input type="text" class="hlo2" value="*" disabled="disabled">
+            <input type="text" class="L2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+            <input type="text" class="hlo2" value="*" disabled="disabled">
+            <input type="text" class="W2" value="*" disabled="disabled">
+            <input type="text" class="C2" value="*" disabled="disabled">
+            <input type="text" class="zodiac2" value="*" disabled="disabled">
+            <input type="text" class="W2" value="*" disabled="disabled">
+            <input type="text" class="rC2" value="*" disabled="disabled">
+            <input type="text" class="P2" value="*" disabled="disabled">
+            <input type="text" class="O2" value="*" disabled="disabled">
+            <input type="text" class="S2" value="*" disabled="disabled">
+            <input type="text" class="H2" value="*" disabled="disabled">
+            <input type="text" class="T2" value="*" disabled="disabled">
+            <input type="text" class="dash2" value="*" disabled="disabled">
+            <input type="text" class="vlo2" value="*" disabled="disabled">
+            <input type="text" class="hlo2" value="*" disabled="disabled">
+            <input type="text" class="q2" value="*" disabled="disabled">
+        </div>
+        <div class="row">
+            <input type="text" class="l2" value="*" disabled="disabled">
+            <input type="text" class="F2" value="*" disabled="disabled">
+            <input type="text" class="rK2" value="*" disabled="disabled">
+            <input type="text" class="rD2" value="*" disabled="disabled">
+            <input type="text" class="W2" value="*" disabled="disabled">
+            <input type="text" class="lV2" value="*" disabled="disabled">
+            <input type="text" class="triangledot2" value="*" disabled="disabled">
+            <input type="text" class="fT2" value="*" disabled="disabled">
+            <input type="text" class="B2" value="*" disabled="disabled">
+            <input type="text" class="square2" value="*" disabled="disabled">
+            <input type="text" class="Y2" value="*" disabled="disabled">
+            <input type="text" class="O2" value="*" disabled="disabled">
+            <input type="text" class="B2" value="*" disabled="disabled">
+            <input type="text" class="rtssquare2" value="*" disabled="disabled">
+            <input type="text" class="line2" value="*" disabled="disabled">
+            <input type="text" class="C2" value="*" disabled="disabled">
+            <input type="text" class="rC2" value="*" disabled="disabled">
+        </div>
+
+        <div class="row">
+            <input type="text" class="rV2" value="*" disabled="disabled">
+            <input type="text" class="M2" value="*" disabled="disabled">
+            <input type="text" class="D2" value="*" disabled="disabled">
+            <input type="text" class="H2" value="*" disabled="disabled">
+            <input type="text" class="N2" value="*" disabled="disabled">
+            <input type="text" class="q2" value="*" disabled="disabled">
+            <input type="text" class="rK2" value="*" disabled="disabled">
+            <input type="text" class="S2" value="*" disabled="disabled">
+            <input type="text" class="zodiac2" value="*" disabled="disabled">
+            <input type="text" class="Z2" value="*" disabled="disabled">
+            <input type="text" class="O2" value="*" disabled="disabled">
+            <input type="text" class="ftriangle2" value="*" disabled="disabled">
+            <input type="text" class="A2" value="*" disabled="disabled">
+            <input type="text" class="l2" value="*" disabled="disabled">
+            <input type="text" class="K2" value="*" disabled="disabled">
+            <input type="text" class="ijldot2" value="*" disabled="disabled">
+            <input type="text" class="plus2" value="*" disabled="disabled">
+        </div>
+
+
+
+
+
+
+        <div class=row style="margin-top: 105px;">
+            <input class="input2" style="width: 330px; height: 20px;" type="text" name="name" id="input2" value="">
+        </div>
+
+        <div class="text row" style="margin-top: 20px; font-size: 8.5px;">
+            Solution: </br>UNKNOWN
+        </div>
+    </div>
+    <div style="margin-left: 775px; margin-top: -653px;">
+        <div class="title" style="text-align: center; color: grey; font-size: 40px;width: 650px;">
+            Brute force 340 solutions
+        </div>
+
+        <div id="list"><p><iframe src="dynSolutions.html" width=650 height=600 frameborder=0 ></iframe></p></div>
+</div>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+
+
+    <script type='text/javascript'>
+        $('.input').on('keypress keyup blur', function (event) {
+            var input = document.getElementById('input').value;
+            if (input[0] != null) {
+                document.getElementsByClassName('triangle')[0].value = input[0];
+                document.getElementsByClassName('triangle')[1].value = input[0];
+                document.getElementsByClassName('triangle')[2].value = input[0];
+                document.getElementsByClassName('triangle')[3].value = input[0];
+                document.getElementsByClassName('triangle')[4].value = input[0];
+                document.getElementsByClassName('triangle')[5].value = input[0];
+                document.getElementsByClassName('triangle')[6].value = input[0];
+                document.getElementsByClassName('triangle')[7].value = input[0];
+                document.getElementsByClassName('triangle')[8].value = input[0];
+                document.getElementsByClassName('triangle')[9].value = input[0];
+                document.getElementsByClassName('triangle')[10].value = input[0];
+                document.getElementsByClassName('triangle')[11].value = input[0];
+                document.getElementsByClassName('triangle')[12].value = input[0];
+                document.getElementsByClassName('triangle')[13].value = input[0];
+
+            }
+            else {
+                document.getElementsByClassName('triangle')[0].value = "*";
+                document.getElementsByClassName('triangle')[1].value = "*";
+                document.getElementsByClassName('triangle')[2].value = "*";
+                document.getElementsByClassName('triangle')[3].value = "*";
+                document.getElementsByClassName('triangle')[4].value = "*";
+                document.getElementsByClassName('triangle')[5].value = "*";
+                document.getElementsByClassName('triangle')[6].value = "*";
+                document.getElementsByClassName('triangle')[7].value = "*";
+                document.getElementsByClassName('triangle')[8].value = "*";
+                document.getElementsByClassName('triangle')[9].value = "*";
+                document.getElementsByClassName('triangle')[10].value = "*";
+                document.getElementsByClassName('triangle')[11].value = "*";
+                document.getElementsByClassName('triangle')[12].value = "*";
+                document.getElementsByClassName('triangle')[13].value = "*";
+
+            }
+
+            if (input[1] != null) {
+                document.getElementsByClassName('hsquare')[0].value = input[1];
+                document.getElementsByClassName('hsquare')[1].value = input[1];
+                document.getElementsByClassName('hsquare')[2].value = input[1];
+                document.getElementsByClassName('hsquare')[3].value = input[1];
+                document.getElementsByClassName('hsquare')[4].value = input[1];
+                document.getElementsByClassName('hsquare')[5].value = input[1];
+                document.getElementsByClassName('hsquare')[6].value = input[1];
+                document.getElementsByClassName('hsquare')[7].value = input[1];
+                document.getElementsByClassName('hsquare')[8].value = input[1];
+                document.getElementsByClassName('hsquare')[9].value = input[1];
+                document.getElementsByClassName('hsquare')[10].value = input[1];
+
+            }
+            else {
+                document.getElementsByClassName('hsquare')[0].value = "*";
+                document.getElementsByClassName('hsquare')[1].value = "*";
+                document.getElementsByClassName('hsquare')[2].value = "*";
+                document.getElementsByClassName('hsquare')[3].value = "*";
+                document.getElementsByClassName('hsquare')[4].value = "*";
+                document.getElementsByClassName('hsquare')[5].value = "*";
+                document.getElementsByClassName('hsquare')[6].value = "*";
+                document.getElementsByClassName('hsquare')[7].value = "*";
+                document.getElementsByClassName('hsquare')[8].value = "*";
+                document.getElementsByClassName('hsquare')[9].value = "*";
+                document.getElementsByClassName('hsquare')[10].value = "*";
+
+            }
+
+            if (input[2] != null) {
+                document.getElementsByClassName('P')[0].value = input[2];
+                document.getElementsByClassName('P')[1].value = input[2];
+                document.getElementsByClassName('P')[2].value = input[2];
+                document.getElementsByClassName('P')[3].value = input[2];
+                document.getElementsByClassName('P')[4].value = input[2];
+                document.getElementsByClassName('P')[5].value = input[2];
+                document.getElementsByClassName('P')[6].value = input[2];
+                document.getElementsByClassName('P')[7].value = input[2];
+                document.getElementsByClassName('P')[8].value = input[2];
+                document.getElementsByClassName('P')[9].value = input[2];
+                document.getElementsByClassName('P')[10].value = input[2];
+
+            }
+            else {
+                document.getElementsByClassName('P')[0].value = "*";
+                document.getElementsByClassName('P')[1].value = "*";
+                document.getElementsByClassName('P')[2].value = "*";
+                document.getElementsByClassName('P')[3].value = "*";
+                document.getElementsByClassName('P')[4].value = "*";
+                document.getElementsByClassName('P')[5].value = "*";
+                document.getElementsByClassName('P')[6].value = "*";
+                document.getElementsByClassName('P')[7].value = "*";
+                document.getElementsByClassName('P')[8].value = "*";
+                document.getElementsByClassName('P')[9].value = "*";
+                document.getElementsByClassName('P')[10].value = "*";
+            }
+
+            if (input[3] != null) {
+                document.getElementsByClassName('dash')[0].value = input[3];
+                document.getElementsByClassName('dash')[1].value = input[3];
+                document.getElementsByClassName('dash')[2].value = input[3];
+                document.getElementsByClassName('dash')[3].value = input[3];
+                document.getElementsByClassName('dash')[4].value = input[3];
+                document.getElementsByClassName('dash')[5].value = input[3];
+            }
+            else {
+                document.getElementsByClassName('dash')[0].value = "*";
+                document.getElementsByClassName('dash')[1].value = "*";
+                document.getElementsByClassName('dash')[2].value = "*";
+                document.getElementsByClassName('dash')[3].value = "*";
+                document.getElementsByClassName('dash')[4].value = "*";
+                document.getElementsByClassName('dash')[5].value = "*";
+            }
+            if (input[4] != null) {
+                document.getElementsByClassName('Z')[0].value = input[4];
+                document.getElementsByClassName('Z')[1].value = input[4];
+                document.getElementsByClassName('Z')[2].value = input[4];
+                document.getElementsByClassName('Z')[3].value = input[4];
+                document.getElementsByClassName('Z')[4].value = input[4];
+                document.getElementsByClassName('Z')[5].value = input[4];
+                document.getElementsByClassName('Z')[6].value = input[4];
+                document.getElementsByClassName('Z')[7].value = input[4];
+            }
+            else {
+                document.getElementsByClassName('Z')[0].value = "*";
+                document.getElementsByClassName('Z')[1].value = "*";
+                document.getElementsByClassName('Z')[2].value = "*";
+                document.getElementsByClassName('Z')[3].value = "*";
+                document.getElementsByClassName('Z')[4].value = "*";
+                document.getElementsByClassName('Z')[5].value = "*";
+                document.getElementsByClassName('Z')[6].value = "*";
+                document.getElementsByClassName('Z')[7].value = "*";
+            }
+            if (input[5] != null) {
+                document.getElementsByClassName('u')[0].value = input[5];
+                document.getElementsByClassName('u')[1].value = input[5];
+                document.getElementsByClassName('u')[2].value = input[5];
+                document.getElementsByClassName('u')[3].value = input[5];
+                document.getElementsByClassName('u')[4].value = input[5];
+                document.getElementsByClassName('u')[5].value = input[5];
+                document.getElementsByClassName('u')[6].value = input[5];
+                document.getElementsByClassName('u')[7].value = input[5];
+                document.getElementsByClassName('u')[8].value = input[5];
+                document.getElementsByClassName('u')[9].value = input[5];
+
+            }
+            else {
+                document.getElementsByClassName('u')[0].value = "*";
+                document.getElementsByClassName('u')[1].value = "*";
+                document.getElementsByClassName('u')[2].value = "*";
+                document.getElementsByClassName('u')[3].value = "*";
+                document.getElementsByClassName('u')[4].value = "*";
+                document.getElementsByClassName('u')[5].value = "*";
+                document.getElementsByClassName('u')[6].value = "*";
+                document.getElementsByClassName('u')[7].value = "*";
+                document.getElementsByClassName('u')[8].value = "*";
+                document.getElementsByClassName('u')[9].value = "*";
+            }
+            if (input[6] != null) {
+                document.getElementsByClassName('B')[0].value = input[6];
+                document.getElementsByClassName('B')[1].value = input[6];
+                document.getElementsByClassName('B')[2].value = input[6];
+                document.getElementsByClassName('B')[3].value = input[6];
+                document.getElementsByClassName('B')[4].value = input[6];
+                document.getElementsByClassName('B')[5].value = input[6];
+                document.getElementsByClassName('B')[6].value = input[6];
+                document.getElementsByClassName('B')[7].value = input[6];
+                document.getElementsByClassName('B')[8].value = input[6];
+                document.getElementsByClassName('B')[9].value = input[6];
+                document.getElementsByClassName('B')[10].value = input[6];
+                document.getElementsByClassName('B')[11].value = input[6];
+            }
+            else {
+                document.getElementsByClassName('B')[0].value = "*";
+                document.getElementsByClassName('B')[1].value = "*";
+                document.getElementsByClassName('B')[2].value = "*";
+                document.getElementsByClassName('B')[3].value = "*";
+                document.getElementsByClassName('B')[4].value = "*";
+                document.getElementsByClassName('B')[5].value = "*";
+                document.getElementsByClassName('B')[6].value = "*";
+                document.getElementsByClassName('B')[7].value = "*";
+                document.getElementsByClassName('B')[8].value = "*";
+                document.getElementsByClassName('B')[9].value = "*";
+                document.getElementsByClassName('B')[10].value = "*";
+                document.getElementsByClassName('B')[11].value = "*";
+            }
+            if (input[7] != null) {
+                document.getElementsByClassName('rK')[0].value = input[7];
+                document.getElementsByClassName('rK')[1].value = input[7];
+                document.getElementsByClassName('rK')[2].value = input[7];
+                document.getElementsByClassName('rK')[3].value = input[7];
+                document.getElementsByClassName('rK')[4].value = input[7];
+                document.getElementsByClassName('rK')[5].value = input[7];
+                document.getElementsByClassName('rK')[6].value = input[7];
+                document.getElementsByClassName('rK')[7].value = input[7];
+                document.getElementsByClassName('rK')[8].value = input[7];
+            }
+            else {
+                document.getElementsByClassName('rK')[0].value = "*";
+                document.getElementsByClassName('rK')[1].value = "*";
+                document.getElementsByClassName('rK')[2].value = "*";
+                document.getElementsByClassName('rK')[3].value = "*";
+                document.getElementsByClassName('rK')[4].value = "*";
+                document.getElementsByClassName('rK')[5].value = "*";
+                document.getElementsByClassName('rK')[6].value = "*";
+                document.getElementsByClassName('rK')[7].value = "*";
+                document.getElementsByClassName('rK')[8].value = "*";
+            }
+            if (input[8] != null) {
+                document.getElementsByClassName('O')[0].value = input[8];
+                document.getElementsByClassName('O')[1].value = input[8];
+                document.getElementsByClassName('O')[2].value = input[8];
+                document.getElementsByClassName('O')[3].value = input[8];
+                document.getElementsByClassName('O')[4].value = input[8];
+                document.getElementsByClassName('O')[5].value = input[8];
+                document.getElementsByClassName('O')[6].value = input[8];
+            }
+            else {
+                document.getElementsByClassName('O')[0].value = "*";
+                document.getElementsByClassName('O')[1].value = "*";
+                document.getElementsByClassName('O')[2].value = "*";
+                document.getElementsByClassName('O')[3].value = "*";
+                document.getElementsByClassName('O')[4].value = "*";
+                document.getElementsByClassName('O')[5].value = "*";
+                document.getElementsByClassName('O')[6].value = "*";
+            }
+            if (input[9] != null) {
+                document.getElementsByClassName('R')[0].value = input[9];
+                document.getElementsByClassName('R')[1].value = input[9];
+                document.getElementsByClassName('R')[2].value = input[9];
+                document.getElementsByClassName('R')[3].value = input[9];
+                document.getElementsByClassName('R')[4].value = input[9];
+                document.getElementsByClassName('R')[5].value = input[9];
+                document.getElementsByClassName('R')[6].value = input[9];
+                document.getElementsByClassName('R')[7].value = input[9];
+                document.getElementsByClassName('R')[8].value = input[9];
+                document.getElementsByClassName('R')[9].value = input[9];
+                document.getElementsByClassName('R')[10].value = input[9];
+                document.getElementsByClassName('R')[11].value = input[9];
+            }
+            else {
+                document.getElementsByClassName('R')[0].value = "*";
+                document.getElementsByClassName('R')[1].value = "*";
+                document.getElementsByClassName('R')[2].value = "*";
+                document.getElementsByClassName('R')[3].value = "*";
+                document.getElementsByClassName('R')[4].value = "*";
+                document.getElementsByClassName('R')[5].value = "*";
+                document.getElementsByClassName('R')[6].value = "*";
+                document.getElementsByClassName('R')[7].value = "*";
+                document.getElementsByClassName('R')[8].value = "*";
+                document.getElementsByClassName('R')[9].value = "*";
+                document.getElementsByClassName('R')[10].value = "*";
+                document.getElementsByClassName('R')[11].value = "*";
+            }
+            if (input[10] != null) {
+                document.getElementsByClassName('dK')[0].value = input[10];
+                document.getElementsByClassName('dK')[1].value = input[10];
+                document.getElementsByClassName('dK')[2].value = input[10];
+                document.getElementsByClassName('dK')[3].value = input[10];
+                document.getElementsByClassName('dK')[4].value = input[10];
+                document.getElementsByClassName('dK')[5].value = input[10];
+                document.getElementsByClassName('dK')[6].value = input[10];
+            }
+            else {
+                document.getElementsByClassName('dK')[0].value = "*";
+                document.getElementsByClassName('dK')[1].value = "*";
+                document.getElementsByClassName('dK')[2].value = "*";
+                document.getElementsByClassName('dK')[3].value = "*";
+                document.getElementsByClassName('dK')[4].value = "*";
+                document.getElementsByClassName('dK')[5].value = "*";
+                document.getElementsByClassName('dK')[6].value = "*";
+            }
+            if (input[11] != null) {
+                document.getElementsByClassName('rP')[0].value = input[11];
+                document.getElementsByClassName('rP')[1].value = input[11];
+                document.getElementsByClassName('rP')[2].value = input[11];
+                document.getElementsByClassName('rP')[3].value = input[11];
+                document.getElementsByClassName('rP')[4].value = input[11];
+                document.getElementsByClassName('rP')[5].value = input[11];
+            }
+            else {
+                document.getElementsByClassName('rP')[0].value = "*";
+                document.getElementsByClassName('rP')[1].value = "*";
+                document.getElementsByClassName('rP')[2].value = "*";
+                document.getElementsByClassName('rP')[3].value = "*";
+                document.getElementsByClassName('rP')[4].value = "*";
+                document.getElementsByClassName('rP')[5].value = "*";
+            }
+            if (input[12] != null) {
+                document.getElementsByClassName('X')[0].value = input[12];
+                document.getElementsByClassName('X')[1].value = input[12];
+                document.getElementsByClassName('X')[2].value = input[12];
+                document.getElementsByClassName('X')[3].value = input[12];
+                document.getElementsByClassName('X')[4].value = input[12];
+                document.getElementsByClassName('X')[5].value = input[12];
+                document.getElementsByClassName('X')[6].value = input[12];
+                document.getElementsByClassName('X')[7].value = input[12];
+                document.getElementsByClassName('X')[8].value = input[12];
+            }
+            else {
+                document.getElementsByClassName('X')[0].value = "*";
+                document.getElementsByClassName('X')[1].value = "*";
+                document.getElementsByClassName('X')[2].value = "*";
+                document.getElementsByClassName('X')[3].value = "*";
+                document.getElementsByClassName('X')[4].value = "*";
+                document.getElementsByClassName('X')[5].value = "*";
+                document.getElementsByClassName('X')[6].value = "*";
+                document.getElementsByClassName('X')[7].value = "*";
+                document.getElementsByClassName('X')[8].value = "*";
+            }
+            if (input[13] != null) {
+                document.getElementsByClassName('W')[0].value = input[13];
+                document.getElementsByClassName('W')[1].value = input[13];
+                document.getElementsByClassName('W')[2].value = input[13];
+                document.getElementsByClassName('W')[3].value = input[13];
+                document.getElementsByClassName('W')[4].value = input[13];
+                document.getElementsByClassName('W')[5].value = input[13];
+                document.getElementsByClassName('W')[6].value = input[13];
+                document.getElementsByClassName('W')[7].value = input[13];
+                document.getElementsByClassName('W')[8].value = input[13];
+            }
+            else {
+                document.getElementsByClassName('W')[0].value = "*";
+                document.getElementsByClassName('W')[1].value = "*";
+                document.getElementsByClassName('W')[2].value = "*";
+                document.getElementsByClassName('W')[3].value = "*";
+                document.getElementsByClassName('W')[4].value = "*";
+                document.getElementsByClassName('W')[5].value = "*";
+                document.getElementsByClassName('W')[6].value = "*";
+                document.getElementsByClassName('W')[7].value = "*";
+                document.getElementsByClassName('W')[8].value = "*";
+            }
+            if (input[14] != null) {
+                document.getElementsByClassName('V')[0].value = input[14];
+                document.getElementsByClassName('V')[1].value = input[14];
+                document.getElementsByClassName('V')[2].value = input[14];
+                document.getElementsByClassName('V')[3].value = input[14];
+                document.getElementsByClassName('V')[4].value = input[14];
+                document.getElementsByClassName('V')[5].value = input[14];
+                document.getElementsByClassName('V')[6].value = input[14];
+                document.getElementsByClassName('V')[7].value = input[14];
+                document.getElementsByClassName('V')[8].value = input[14];
+            }
+            else {
+                document.getElementsByClassName('V')[0].value = "*";
+                document.getElementsByClassName('V')[1].value = "*";
+                document.getElementsByClassName('V')[2].value = "*";
+                document.getElementsByClassName('V')[3].value = "*";
+                document.getElementsByClassName('V')[4].value = "*";
+                document.getElementsByClassName('V')[5].value = "*";
+                document.getElementsByClassName('V')[6].value = "*";
+                document.getElementsByClassName('V')[7].value = "*";
+                document.getElementsByClassName('V')[8].value = "*";
+            }
+            if (input[15] != null) {
+                document.getElementsByClassName('plus')[0].value = input[15];
+                document.getElementsByClassName('plus')[1].value = input[15];
+                document.getElementsByClassName('plus')[2].value = input[15];
+                document.getElementsByClassName('plus')[3].value = input[15];
+                document.getElementsByClassName('plus')[4].value = input[15];
+                document.getElementsByClassName('plus')[5].value = input[15];
+                document.getElementsByClassName('plus')[6].value = input[15];
+                document.getElementsByClassName('plus')[7].value = input[15];
+            }
+            else {
+                document.getElementsByClassName('plus')[0].value = "*";
+                document.getElementsByClassName('plus')[1].value = "*";
+                document.getElementsByClassName('plus')[2].value = "*";
+                document.getElementsByClassName('plus')[3].value = "*";
+                document.getElementsByClassName('plus')[4].value = "*";
+                document.getElementsByClassName('plus')[5].value = "*";
+                document.getElementsByClassName('plus')[6].value = "*";
+                document.getElementsByClassName('plus')[7].value = "*";
+            }
+            if (input[16] != null) {
+                document.getElementsByClassName('rE')[0].value = input[16];
+                document.getElementsByClassName('rE')[1].value = input[16];
+                document.getElementsByClassName('rE')[2].value = input[16];
+                document.getElementsByClassName('rE')[3].value = input[16];
+                document.getElementsByClassName('rE')[4].value = input[16];
+                document.getElementsByClassName('rE')[5].value = input[16];
+                document.getElementsByClassName('rE')[6].value = input[16];
+                document.getElementsByClassName('rE')[7].value = input[16];
+                document.getElementsByClassName('rE')[8].value = input[16];
+                document.getElementsByClassName('rE')[9].value = input[16];
+            }
+            else {
+                document.getElementsByClassName('rE')[0].value = "*";
+                document.getElementsByClassName('rE')[1].value = "*";
+                document.getElementsByClassName('rE')[2].value = "*";
+                document.getElementsByClassName('rE')[3].value = "*";
+                document.getElementsByClassName('rE')[4].value = "*";
+                document.getElementsByClassName('rE')[5].value = "*";
+                document.getElementsByClassName('rE')[6].value = "*";
+                document.getElementsByClassName('rE')[7].value = "*";
+                document.getElementsByClassName('rE')[8].value = "*";
+                document.getElementsByClassName('rE')[9].value = "*";
+            }
+            if (input[17] != null) {
+                document.getElementsByClassName('G')[0].value = input[17];
+                document.getElementsByClassName('G')[1].value = input[17];
+                document.getElementsByClassName('G')[2].value = input[17];
+                document.getElementsByClassName('G')[3].value = input[17];
+                document.getElementsByClassName('G')[4].value = input[17];
+                document.getElementsByClassName('G')[5].value = input[17];
+                document.getElementsByClassName('G')[6].value = input[17];
+            }
+            else {
+                document.getElementsByClassName('G')[0].value = "*";
+                document.getElementsByClassName('G')[1].value = "*";
+                document.getElementsByClassName('G')[2].value = "*";
+                document.getElementsByClassName('G')[3].value = "*";
+                document.getElementsByClassName('G')[4].value = "*";
+                document.getElementsByClassName('G')[5].value = "*";
+                document.getElementsByClassName('G')[6].value = "*";
+            }
+            if (input[18] != null) {
+                document.getElementsByClassName('y')[0].value = input[18];
+                document.getElementsByClassName('y')[1].value = input[18];
+                document.getElementsByClassName('y')[2].value = input[18];
+                document.getElementsByClassName('y')[3].value = input[18];
+                document.getElementsByClassName('y')[4].value = input[18];
+                document.getElementsByClassName('y')[5].value = input[18];
+                document.getElementsByClassName('y')[6].value = input[18];
+                document.getElementsByClassName('y')[7].value = input[18];
+                document.getElementsByClassName('y')[8].value = input[18];
+                document.getElementsByClassName('y')[9].value = input[18];
+            }
+            else {
+                document.getElementsByClassName('y')[0].value = "*";
+                document.getElementsByClassName('y')[1].value = "*";
+                document.getElementsByClassName('y')[2].value = "*";
+                document.getElementsByClassName('y')[3].value = "*";
+                document.getElementsByClassName('y')[4].value = "*";
+                document.getElementsByClassName('y')[5].value = "*";
+                document.getElementsByClassName('y')[6].value = "*";
+                document.getElementsByClassName('y')[7].value = "*";
+                document.getElementsByClassName('y')[8].value = "*";
+                document.getElementsByClassName('y')[9].value = "*";
+            }
+            if (input[19] != null) {
+                document.getElementsByClassName('F')[0].value = input[19];
+                document.getElementsByClassName('F')[1].value = input[19];
+                document.getElementsByClassName('F')[2].value = input[19];
+                document.getElementsByClassName('F')[3].value = input[19];
+                document.getElementsByClassName('F')[4].value = input[19];
+                document.getElementsByClassName('F')[5].value = input[19];
+            }
+            else {
+                document.getElementsByClassName('F')[0].value = "*";
+                document.getElementsByClassName('F')[1].value = "*";
+                document.getElementsByClassName('F')[2].value = "*";
+                document.getElementsByClassName('F')[3].value = "*";
+                document.getElementsByClassName('F')[4].value = "*";
+                document.getElementsByClassName('F')[5].value = "*";
+            }
+            if (input[20] != null) {
+                document.getElementsByClassName('dO')[0].value = input[20];
+                document.getElementsByClassName('dO')[1].value = input[20];
+                document.getElementsByClassName('dO')[2].value = input[20];
+                document.getElementsByClassName('dO')[3].value = input[20];
+                document.getElementsByClassName('dO')[4].value = input[20];
+                document.getElementsByClassName('dO')[5].value = input[20];
+                document.getElementsByClassName('dO')[6].value = input[20];
+                document.getElementsByClassName('dO')[7].value = input[20];
+            }
+            else {
+                document.getElementsByClassName('dO')[0].value = "*";
+                document.getElementsByClassName('dO')[1].value = "*";
+                document.getElementsByClassName('dO')[2].value = "*";
+                document.getElementsByClassName('dO')[3].value = "*";
+                document.getElementsByClassName('dO')[4].value = "*";
+                document.getElementsByClassName('dO')[5].value = "*";
+                document.getElementsByClassName('dO')[6].value = "*";
+                document.getElementsByClassName('dO')[7].value = "*";
+            }
+            if (input[21] != null) {
+                document.getElementsByClassName('H')[0].value = input[21];
+                document.getElementsByClassName('H')[1].value = input[21];
+                document.getElementsByClassName('H')[2].value = input[21];
+                document.getElementsByClassName('H')[3].value = input[21];
+                document.getElementsByClassName('H')[4].value = input[21];
+                document.getElementsByClassName('H')[5].value = input[21];
+                document.getElementsByClassName('H')[6].value = input[21];
+                document.getElementsByClassName('H')[7].value = input[21];
+            }
+            else {
+                document.getElementsByClassName('H')[0].value = "*";
+                document.getElementsByClassName('H')[1].value = "*";
+                document.getElementsByClassName('H')[2].value = "*";
+                document.getElementsByClassName('H')[3].value = "*";
+                document.getElementsByClassName('H')[4].value = "*";
+                document.getElementsByClassName('H')[5].value = "*";
+                document.getElementsByClassName('H')[6].value = "*";
+                document.getElementsByClassName('H')[7].value = "*";
+            }
+            if (input[22] != null) {
+                document.getElementsByClassName('dsquare')[0].value = input[22];
+                document.getElementsByClassName('dsquare')[1].value = input[22];
+                document.getElementsByClassName('dsquare')[2].value = input[22];
+                document.getElementsByClassName('dsquare')[3].value = input[22];
+                document.getElementsByClassName('dsquare')[4].value = input[22];
+                document.getElementsByClassName('dsquare')[5].value = input[22];
+            }
+            else {
+                document.getElementsByClassName('dsquare')[0].value = "*";
+                document.getElementsByClassName('dsquare')[1].value = "*";
+                document.getElementsByClassName('dsquare')[2].value = "*";
+                document.getElementsByClassName('dsquare')[3].value = "*";
+                document.getElementsByClassName('dsquare')[4].value = "*";
+                document.getElementsByClassName('dsquare')[5].value = "*";
+            }
+            if (input[23] != null) {
+                document.getElementsByClassName('K')[0].value = input[23];
+                document.getElementsByClassName('K')[1].value = input[23];
+                document.getElementsByClassName('K')[2].value = input[23];
+                document.getElementsByClassName('K')[3].value = input[23];
+                document.getElementsByClassName('K')[4].value = input[23];
+            }
+            else {
+                document.getElementsByClassName('K')[0].value = "*";
+                document.getElementsByClassName('K')[1].value = "*";
+                document.getElementsByClassName('K')[2].value = "*";
+                document.getElementsByClassName('K')[3].value = "*";
+                document.getElementsByClassName('K')[4].value = "*";
+            }
+            if (input[24] != null) {
+                document.getElementsByClassName('ij')[0].value = input[24];
+                document.getElementsByClassName('ij')[1].value = input[24];
+                document.getElementsByClassName('ij')[2].value = input[24];
+                document.getElementsByClassName('ij')[3].value = input[24];
+                document.getElementsByClassName('ij')[4].value = input[24];
+            }
+            else {
+                document.getElementsByClassName('ij')[0].value = "*";
+                document.getElementsByClassName('ij')[1].value = "*";
+                document.getElementsByClassName('ij')[2].value = "*";
+                document.getElementsByClassName('ij')[3].value = "*";
+                document.getElementsByClassName('ij')[4].value = "*";
+            }
+            if (input[29] != null) {
+                document.getElementsByClassName('I')[0].value = input[29];
+                document.getElementsByClassName('I')[1].value = input[29];
+                document.getElementsByClassName('I')[2].value = input[29];
+                document.getElementsByClassName('I')[3].value = input[29];
+                document.getElementsByClassName('I')[4].value = input[29];
+                document.getElementsByClassName('I')[5].value = input[29];
+                document.getElementsByClassName('I')[6].value = input[29];
+                document.getElementsByClassName('I')[7].value = input[29];
+                document.getElementsByClassName('I')[8].value = input[29];
+                document.getElementsByClassName('I')[9].value = input[29];
+                document.getElementsByClassName('I')[10].value = input[29];
+            }
+            else {
+                document.getElementsByClassName('I')[0].value = "*";
+                document.getElementsByClassName('I')[1].value = "*";
+                document.getElementsByClassName('I')[2].value = "*";
+                document.getElementsByClassName('I')[3].value = "*";
+                document.getElementsByClassName('I')[4].value = "*";
+                document.getElementsByClassName('I')[5].value = "*";
+                document.getElementsByClassName('I')[6].value = "*";
+                document.getElementsByClassName('I')[7].value = "*";
+                document.getElementsByClassName('I')[8].value = "*";
+                document.getElementsByClassName('I')[9].value = "*";
+                document.getElementsByClassName('I')[10].value = "*";
+            }
+            if (input[25] != null) {
+                document.getElementsByClassName('Q')[0].value = input[25];
+                document.getElementsByClassName('Q')[1].value = input[25];
+                document.getElementsByClassName('Q')[2].value = input[25];
+                document.getElementsByClassName('Q')[3].value = input[25];
+                document.getElementsByClassName('Q')[4].value = input[25];
+                document.getElementsByClassName('Q')[5].value = input[25];
+                document.getElementsByClassName('Q')[6].value = input[25];
+                document.getElementsByClassName('Q')[7].value = input[25];
+                document.getElementsByClassName('Q')[8].value = input[25];
+                document.getElementsByClassName('Q')[9].value = input[25];
+                document.getElementsByClassName('Q')[10].value = input[25];
+                document.getElementsByClassName('Q')[11].value = input[25];
+                document.getElementsByClassName('Q')[12].value = input[25];
+                document.getElementsByClassName('Q')[13].value = input[25];
+                document.getElementsByClassName('Q')[14].value = input[25];
+                document.getElementsByClassName('Q')[15].value = input[25];
+                document.getElementsByClassName('Q')[16].value = input[25];
+                // document.getElementsByClassName('Q')[17].value = input[25];
+                // document.getElementsByClassName('Q')[18].value = input[25];
+                //   document.getElementsByClassName('Q')[19].value = input[25];
+                //   document.getElementsByClassName('Q')[20].value = input[25];
+                //    document.getElementsByClassName('Q')[21].value = input[26];
+            }
+            else {
+                document.getElementsByClassName('Q')[0].value = "*";
+                document.getElementsByClassName('Q')[1].value = "*";
+                document.getElementsByClassName('Q')[2].value = "*";
+                document.getElementsByClassName('Q')[3].value = "*";
+                document.getElementsByClassName('Q')[4].value = "*";
+                document.getElementsByClassName('Q')[5].value = "*";
+                document.getElementsByClassName('Q')[6].value = "*";
+                document.getElementsByClassName('Q')[7].value = "*";
+                document.getElementsByClassName('Q')[8].value = "*";
+                document.getElementsByClassName('Q')[9].value = "*";
+                document.getElementsByClassName('Q')[10].value = "*";
+                document.getElementsByClassName('Q')[11].value = "*";
+                document.getElementsByClassName('Q')[12].value = "*";
+                document.getElementsByClassName('Q')[13].value = "*";
+                document.getElementsByClassName('Q')[14].value = "*";
+                document.getElementsByClassName('Q')[15].value = "*";
+                document.getElementsByClassName('Q')[16].value = "*";
+                // document.getElementsByClassName('Q')[17].value = "*";
+                //   document.getElementsByClassName('Q')[18].value = "*";
+                //  document.getElementsByClassName('Q')[19].value = "*";
+                //   document.getElementsByClassName('Q')[20].value = "*";
+                //   document.getElementsByClassName('Q')[21].value = "*";
+            }
+            if (input[26] != null) {
+                document.getElementsByClassName('M')[0].value = input[26];
+                document.getElementsByClassName('M')[1].value = input[26];
+                document.getElementsByClassName('M')[2].value = input[26];
+                document.getElementsByClassName('M')[3].value = input[26];
+                document.getElementsByClassName('M')[4].value = input[26];
+                document.getElementsByClassName('M')[5].value = input[26];
+                document.getElementsByClassName('M')[6].value = input[26];
+                document.getElementsByClassName('M')[7].value = input[26];
+                //   document.getElementsByClassName('M')[8].value = input[27];
+                //     document.getElementsByClassName('M')[9].value = input[27];
+            }
+            else {
+                document.getElementsByClassName('M')[0].value = "*";
+                document.getElementsByClassName('M')[1].value = "*";
+                document.getElementsByClassName('M')[2].value = "*";
+                document.getElementsByClassName('M')[3].value = "*";
+                document.getElementsByClassName('M')[4].value = "*";
+                document.getElementsByClassName('M')[5].value = "*";
+                document.getElementsByClassName('M')[6].value = "*";
+                document.getElementsByClassName('M')[7].value = "*";
+                //  document.getElementsByClassName('M')[8].value = "*";
+                //   document.getElementsByClassName('M')[9].value = "*";
+            }
+            if (input[27] != null) {
+                document.getElementsByClassName('J')[0].value = input[27];
+                document.getElementsByClassName('J')[1].value = input[27];
+                document.getElementsByClassName('J')[2].value = input[27];
+                document.getElementsByClassName('J')[3].value = input[27];
+                document.getElementsByClassName('J')[4].value = input[27];
+            }
+            else {
+                document.getElementsByClassName('J')[0].value = "*";
+                document.getElementsByClassName('J')[1].value = "*";
+                document.getElementsByClassName('J')[2].value = "*";
+                document.getElementsByClassName('J')[3].value = "*";
+                document.getElementsByClassName('J')[4].value = "*";
+            }
+            if (input[28] != null) {
+                document.getElementsByClassName('dV')[0].value = input[28];
+                document.getElementsByClassName('dV')[1].value = input[28];
+                document.getElementsByClassName('dV')[2].value = input[28];
+                document.getElementsByClassName('dV')[3].value = input[28];
+                document.getElementsByClassName('dV')[4].value = input[28];
+                document.getElementsByClassName('dV')[5].value = input[28];
+            }
+            else {
+                document.getElementsByClassName('dV')[0].value = "*";
+                document.getElementsByClassName('dV')[1].value = "*";
+                document.getElementsByClassName('dV')[2].value = "*";
+                document.getElementsByClassName('dV')[3].value = "*";
+                document.getElementsByClassName('dV')[4].value = "*";
+                document.getElementsByClassName('dV')[5].value = "*";
+            }
+            if (input[30] != null) {
+                document.getElementsByClassName('dtriangle')[0].value = input[30];
+                document.getElementsByClassName('dtriangle')[1].value = input[30];
+                document.getElementsByClassName('dtriangle')[2].value = input[30];
+            }
+            else {
+                document.getElementsByClassName('dtriangle')[0].value = "*";
+                document.getElementsByClassName('dtriangle')[1].value = "*";
+                document.getElementsByClassName('dtriangle')[2].value = "*";
+            }
+            if (input[31] != null) {
+                document.getElementsByClassName('T')[0].value = input[31];
+                document.getElementsByClassName('T')[1].value = input[31];
+                document.getElementsByClassName('T')[2].value = input[31];
+                document.getElementsByClassName('T')[3].value = input[31];
+                document.getElementsByClassName('T')[4].value = input[31];
+                document.getElementsByClassName('T')[5].value = input[31];
+            }
+            else {
+                document.getElementsByClassName('T')[0].value = "*";
+                document.getElementsByClassName('T')[1].value = "*";
+                document.getElementsByClassName('T')[2].value = "*";
+                document.getElementsByClassName('T')[3].value = "*";
+                document.getElementsByClassName('T')[4].value = "*";
+                document.getElementsByClassName('T')[5].value = "*";
+            }
+            if (input[32] != null) {
+                document.getElementsByClassName('dT')[0].value = input[32];
+                document.getElementsByClassName('dT')[1].value = input[32];
+                document.getElementsByClassName('dT')[2].value = input[32];
+                document.getElementsByClassName('dT')[3].value = input[32];
+                document.getElementsByClassName('dT')[4].value = input[32];
+                document.getElementsByClassName('dT')[5].value = input[32];
+                document.getElementsByClassName('dT')[6].value = input[32];
+            }
+            else {
+                30
+                document.getElementsByClassName('dT')[0].value = "*";
+                document.getElementsByClassName('dT')[1].value = "*";
+                document.getElementsByClassName('dT')[2].value = "*";
+                document.getElementsByClassName('dT')[3].value = "*";
+                document.getElementsByClassName('dT')[4].value = "*";
+                document.getElementsByClassName('dT')[5].value = "*";
+                document.getElementsByClassName('dT')[6].value = "*";
+            }
+            if (input[33] != null) {
+                document.getElementsByClassName('N')[0].value = input[33];
+                document.getElementsByClassName('N')[1].value = input[33];
+                document.getElementsByClassName('N')[2].value = input[33];
+                document.getElementsByClassName('N')[3].value = input[33];
+                document.getElementsByClassName('N')[4].value = input[33];
+                document.getElementsByClassName('N')[5].value = input[33];
+            }
+            else {
+                document.getElementsByClassName('N')[0].value = "*";
+                document.getElementsByClassName('N')[1].value = "*";
+                document.getElementsByClassName('N')[2].value = "*";
+                document.getElementsByClassName('N')[3].value = "*";
+                document.getElementsByClassName('N')[4].value = "*";
+                document.getElementsByClassName('N')[5].value = "*";
+            }
+            if (input[34] != null) {
+                document.getElementsByClassName('Qr')[0].value = input[34];
+                document.getElementsByClassName('Qr')[1].value = input[34];
+                document.getElementsByClassName('Qr')[2].value = input[34];
+                document.getElementsByClassName('Qr')[3].value = input[34];
+            }
+            else {
+                document.getElementsByClassName('Qr')[0].value = "*";
+                document.getElementsByClassName('Qr')[1].value = "*";
+                document.getElementsByClassName('Qr')[2].value = "*";
+                document.getElementsByClassName('Qr')[3].value = "*";
+            }
+            //HIT
+            if (input[35] != null) {
+                document.getElementsByClassName('D')[0].value = input[35];
+                document.getElementsByClassName('D')[1].value = input[35];
+                document.getElementsByClassName('D')[2].value = input[35];
+                document.getElementsByClassName('D')[3].value = input[35];
+                document.getElementsByClassName('D')[4].value = input[35];
+                document.getElementsByClassName('D')[5].value = input[35];
+            }
+            else {
+                document.getElementsByClassName('D')[0].value = "*";
+                document.getElementsByClassName('D')[1].value = "*";
+                document.getElementsByClassName('D')[2].value = "*";
+                document.getElementsByClassName('D')[3].value = "*";
+                document.getElementsByClassName('D')[4].value = "*";
+                document.getElementsByClassName('D')[5].value = "*";
+            }
+            if (input[36] != null) {
+                document.getElementsByClassName('fO')[0].value = input[36];
+                document.getElementsByClassName('fO')[1].value = input[36];
+                document.getElementsByClassName('fO')[2].value = input[36];
+                document.getElementsByClassName('fO')[3].value = input[36];
+                document.getElementsByClassName('fO')[4].value = input[36];
+                document.getElementsByClassName('fO')[5].value = input[36];
+                document.getElementsByClassName('fO')[6].value = input[36];
+                document.getElementsByClassName('fO')[7].value = input[36];
+            }
+            else {
+                document.getElementsByClassName('fO')[0].value = "*";
+                document.getElementsByClassName('fO')[1].value = "*";
+                document.getElementsByClassName('fO')[2].value = "*";
+                document.getElementsByClassName('fO')[3].value = "*";
+                document.getElementsByClassName('fO')[4].value = "*";
+                document.getElementsByClassName('fO')[5].value = "*";
+                document.getElementsByClassName('fO')[6].value = "*";
+                document.getElementsByClassName('fO')[7].value = "*";
+            }
+            if (input[39] != null) {
+                document.getElementsByClassName('vlO')[0].value = input[39];
+                document.getElementsByClassName('vlO')[1].value = input[39];
+                document.getElementsByClassName('vlO')[2].value = input[39];
+                document.getElementsByClassName('vlO')[3].value = input[39];
+            }
+            else {
+                document.getElementsByClassName('vlO')[0].value = "*";
+                document.getElementsByClassName('vlO')[1].value = "*";
+                document.getElementsByClassName('vlO')[2].value = "*";
+                document.getElementsByClassName('vlO')[3].value = "*";
+            }
+            if (input[38] != null) {
+                document.getElementsByClassName('S')[0].value = input[38];
+                document.getElementsByClassName('S')[1].value = input[38];
+                document.getElementsByClassName('S')[2].value = input[38];
+                document.getElementsByClassName('S')[3].value = input[38];
+                document.getElementsByClassName('S')[4].value = input[38];
+                document.getElementsByClassName('S')[5].value = input[38];
+            }
+            else {
+                document.getElementsByClassName('S')[0].value = "*";
+                document.getElementsByClassName('S')[1].value = "*";
+                document.getElementsByClassName('S')[2].value = "*";
+                document.getElementsByClassName('S')[3].value = "*";
+                document.getElementsByClassName('S')[4].value = "*";
+                document.getElementsByClassName('S')[5].value = "*";
+            }
+            if (input[37] != null) {
+                document.getElementsByClassName('hlO')[0].value = input[37];
+                document.getElementsByClassName('hlO')[1].value = input[37];
+                document.getElementsByClassName('hlO')[2].value = input[37];
+                document.getElementsByClassName('hlO')[3].value = input[37];
+                document.getElementsByClassName('hlO')[4].value = input[37];
+                document.getElementsByClassName('hlO')[5].value = input[37];
+                document.getElementsByClassName('hlO')[6].value = input[37];
+                document.getElementsByClassName('hlO')[7].value = input[37];
+            }
+            else {
+                document.getElementsByClassName('hlO')[0].value = "*";
+                document.getElementsByClassName('hlO')[1].value = "*";
+                document.getElementsByClassName('hlO')[2].value = "*";
+                document.getElementsByClassName('hlO')[3].value = "*";
+                document.getElementsByClassName('hlO')[4].value = "*";
+                document.getElementsByClassName('hlO')[5].value = "*";
+                document.getElementsByClassName('hlO')[6].value = "*";
+                document.getElementsByClassName('hlO')[7].value = "*";
+            }
+            if (input[40] != null) {
+                document.getElementsByClassName('fsquare')[0].value = input[40];
+                document.getElementsByClassName('fsquare')[1].value = input[40];
+                document.getElementsByClassName('fsquare')[2].value = input[40];
+                document.getElementsByClassName('fsquare')[3].value = input[40];
+                document.getElementsByClassName('fsquare')[4].value = input[40];
+                document.getElementsByClassName('fsquare')[5].value = input[40];
+                document.getElementsByClassName('fsquare')[6].value = input[40];
+                document.getElementsByClassName('fsquare')[7].value = input[40];
+                document.getElementsByClassName('fsquare')[8].value = input[40];
+                document.getElementsByClassName('fsquare')[9].value = input[40];
+            }
+            else {
+                document.getElementsByClassName('fsquare')[0].value = "*";
+                document.getElementsByClassName('fsquare')[1].value = "*";
+                document.getElementsByClassName('fsquare')[2].value = "*";
+                document.getElementsByClassName('fsquare')[3].value = "*";
+                document.getElementsByClassName('fsquare')[4].value = "*";
+                document.getElementsByClassName('fsquare')[5].value = "*";
+                document.getElementsByClassName('fsquare')[6].value = "*";
+                document.getElementsByClassName('fsquare')[7].value = "*";
+                document.getElementsByClassName('fsquare')[8].value = "*";
+                document.getElementsByClassName('fsquare')[9].value = "*";
+            }
+            if (input[41] != null) {
+                document.getElementsByClassName('A')[0].value = input[41];
+                document.getElementsByClassName('A')[1].value = input[41];
+                document.getElementsByClassName('A')[2].value = input[41];
+                document.getElementsByClassName('A')[3].value = input[41];
+                document.getElementsByClassName('A')[4].value = input[41];
+                document.getElementsByClassName('A')[5].value = input[41];
+                document.getElementsByClassName('A')[6].value = input[41];
+                document.getElementsByClassName('A')[7].value = input[41];
+            }
+            else {
+                document.getElementsByClassName('A')[0].value = "*";
+                document.getElementsByClassName('A')[1].value = "*";
+                document.getElementsByClassName('A')[2].value = "*";
+                document.getElementsByClassName('A')[3].value = "*";
+                document.getElementsByClassName('A')[4].value = "*";
+                document.getElementsByClassName('A')[5].value = "*";
+                document.getElementsByClassName('A')[6].value = "*";
+                document.getElementsByClassName('A')[7].value = "*";
+            }
+            if (input[42] != null) {
+                document.getElementsByClassName('rF')[0].value = input[42];
+                document.getElementsByClassName('rF')[1].value = input[42];
+                document.getElementsByClassName('rF')[2].value = input[42];
+            }
+            else {
+                document.getElementsByClassName('rF')[0].value = "*";
+                document.getElementsByClassName('rF')[1].value = "*";
+                document.getElementsByClassName('rF')[2].value = "*";
+            }
+            if (input[43] != null) {
+                document.getElementsByClassName('rL')[0].value = input[43];
+                document.getElementsByClassName('rL')[1].value = input[43];
+                document.getElementsByClassName('rL')[2].value = input[43];
+                document.getElementsByClassName('rL')[3].value = input[43];
+                document.getElementsByClassName('rL')[4].value = input[43];
+            }
+            else {
+                document.getElementsByClassName('rL')[0].value = "*";
+                document.getElementsByClassName('rL')[1].value = "*";
+                document.getElementsByClassName('rL')[2].value = "*";
+                document.getElementsByClassName('rL')[3].value = "*";
+                document.getElementsByClassName('rL')[4].value = "*";
+            }
+            if (input[44] != null) {
+                document.getElementsByClassName('E')[0].value = input[44];
+                document.getElementsByClassName('E')[1].value = input[44];
+                document.getElementsByClassName('E')[2].value = input[44];
+                document.getElementsByClassName('E')[3].value = input[44];
+                document.getElementsByClassName('E')[4].value = input[44];
+                document.getElementsByClassName('E')[5].value = input[44];
+                document.getElementsByClassName('E')[6].value = input[44];
+                document.getElementsByClassName('E')[7].value = input[44];
+                document.getElementsByClassName('E')[8].value = input[44];
+            }
+            else {
+                document.getElementsByClassName('E')[0].value = "*";
+                document.getElementsByClassName('E')[1].value = "*";
+                document.getElementsByClassName('E')[2].value = "*";
+                document.getElementsByClassName('E')[3].value = "*";
+                document.getElementsByClassName('E')[4].value = "*";
+                document.getElementsByClassName('E')[5].value = "*";
+                document.getElementsByClassName('E')[6].value = "*";
+                document.getElementsByClassName('E')[7].value = "*";
+                document.getElementsByClassName('E')[8].value = "*";
+            }
+            if (input[45] != null) {
+                document.getElementsByClassName('L')[0].value = input[45];
+                document.getElementsByClassName('L')[1].value = input[45];
+                document.getElementsByClassName('L')[2].value = input[45];
+                document.getElementsByClassName('L')[3].value = input[45];
+                document.getElementsByClassName('L')[4].value = input[45];
+                document.getElementsByClassName('L')[5].value = input[45];
+                document.getElementsByClassName('L')[6].value = input[45];
+                document.getElementsByClassName('L')[7].value = input[45];
+            }
+            else {
+                document.getElementsByClassName('L')[0].value = "*";
+                document.getElementsByClassName('L')[1].value = "*";
+                document.getElementsByClassName('L')[2].value = "*";
+                document.getElementsByClassName('L')[3].value = "*";
+                document.getElementsByClassName('L')[4].value = "*";
+                document.getElementsByClassName('L')[5].value = "*";
+                document.getElementsByClassName('L')[6].value = "*";
+                document.getElementsByClassName('L')[7].value = "*";
+            }
+            if (input[46] != null) {
+                document.getElementsByClassName('rD')[0].value = input[46];
+                document.getElementsByClassName('rD')[1].value = input[46];
+                document.getElementsByClassName('rD')[2].value = input[46];
+                document.getElementsByClassName('rD')[3].value = input[46];
+                document.getElementsByClassName('rD')[4].value = input[46];
+                document.getElementsByClassName('rD')[5].value = input[46];
+            }
+            else {
+                document.getElementsByClassName('rD')[0].value = "*";
+                document.getElementsByClassName('rD')[1].value = "*";
+                document.getElementsByClassName('rD')[2].value = "*";
+                document.getElementsByClassName('rD')[3].value = "*";
+                document.getElementsByClassName('rD')[4].value = "*";
+                document.getElementsByClassName('rD')[5].value = "*";
+            }
+            if (input[47] != null) {
+                document.getElementsByClassName('rR')[0].value = input[47];
+                document.getElementsByClassName('rR')[1].value = input[47];
+                document.getElementsByClassName('rR')[2].value = input[47];
+                document.getElementsByClassName('rR')[3].value = input[47];
+                document.getElementsByClassName('rR')[4].value = input[47];
+                document.getElementsByClassName('rR')[5].value = input[47];
+                document.getElementsByClassName('rR')[6].value = input[47];
+            }
+            else {
+                document.getElementsByClassName('rR')[0].value = "*";
+                document.getElementsByClassName('rR')[1].value = "*";
+                document.getElementsByClassName('rR')[2].value = "*";
+                document.getElementsByClassName('rR')[3].value = "*";
+                document.getElementsByClassName('rR')[4].value = "*";
+                document.getElementsByClassName('rR')[5].value = "*";
+                document.getElementsByClassName('rR')[6].value = "*";
+            }
+            if (input[48] != null) {
+                document.getElementsByClassName('rdash')[0].value = input[48];
+                document.getElementsByClassName('rdash')[1].value = input[48];
+                document.getElementsByClassName('rdash')[2].value = input[48];
+                document.getElementsByClassName('rdash')[3].value = input[48];
+                document.getElementsByClassName('rdash')[4].value = input[48];
+            }
+            else {
+                document.getElementsByClassName('rdash')[0].value = "*";
+                document.getElementsByClassName('rdash')[1].value = "*";
+                document.getElementsByClassName('rdash')[2].value = "*";
+                document.getElementsByClassName('rdash')[3].value = "*";
+                document.getElementsByClassName('rdash')[4].value = "*";
+            }
+            if (input[49] != null) {
+                document.getElementsByClassName('ftriangle')[0].value = input[49];
+                document.getElementsByClassName('ftriangle')[1].value = input[49];
+                document.getElementsByClassName('ftriangle')[2].value = input[49];
+                document.getElementsByClassName('ftriangle')[3].value = input[49];
+                document.getElementsByClassName('ftriangle')[4].value = input[49];
+                document.getElementsByClassName('ftriangle')[5].value = input[49];
+                document.getElementsByClassName('ftriangle')[6].value = input[49];
+                document.getElementsByClassName('ftriangle')[7].value = input[49];
+            }
+            else {
+                document.getElementsByClassName('ftriangle')[0].value = "*";
+                document.getElementsByClassName('ftriangle')[1].value = "*";
+                document.getElementsByClassName('ftriangle')[2].value = "*";
+                document.getElementsByClassName('ftriangle')[3].value = "*";
+                document.getElementsByClassName('ftriangle')[4].value = "*";
+                document.getElementsByClassName('ftriangle')[5].value = "*";
+                document.getElementsByClassName('ftriangle')[6].value = "*";
+                document.getElementsByClassName('ftriangle')[7].value = "*";
+            }
+            if (input[50] != null) {
+                document.getElementsByClassName('zodiac')[0].value = input[50];
+                document.getElementsByClassName('zodiac')[1].value = input[50];
+                document.getElementsByClassName('zodiac')[2].value = input[50];
+                document.getElementsByClassName('zodiac')[3].value = input[50];
+            }
+            else {
+                document.getElementsByClassName('zodiac')[0].value = "*";
+                document.getElementsByClassName('zodiac')[1].value = "*";
+                document.getElementsByClassName('zodiac')[2].value = "*";
+                document.getElementsByClassName('zodiac')[3].value = "*";
+            }
+            if (input[51] != null) {
+                document.getElementsByClassName('dL')[0].value = input[51];
+            }
+            else {
+                document.getElementsByClassName('dL')[0].value = "*";
+            }
+            if (input[52] != null) {
+                document.getElementsByClassName('rC')[0].value = input[52];
+                document.getElementsByClassName('rC')[1].value = input[52];
+                document.getElementsByClassName('rC')[2].value = input[52];
+                document.getElementsByClassName('rC')[3].value = input[52];
+                document.getElementsByClassName('rC')[4].value = input[52];
+                document.getElementsByClassName('rC')[5].value = input[52];
+            }
+            else {
+                document.getElementsByClassName('rC')[0].value = "*";
+                document.getElementsByClassName('rC')[1].value = "*";
+                document.getElementsByClassName('rC')[2].value = "*";
+                document.getElementsByClassName('rC')[3].value = "*";
+                document.getElementsByClassName('rC')[4].value = "*";
+                document.getElementsByClassName('rC')[5].value = "*";
+            }
+            if (input[53] != null) {
+                document.getElementsByClassName('tj')[0].value = input[53];
+            }
+            else {
+                document.getElementsByClassName('tj')[0].value = "*";
+            }
+            if (input[54] != null) {
+                document.getElementsByClassName('square')[0].value = input[54];
+                document.getElementsByClassName('square')[1].value = input[54];
+                document.getElementsByClassName('square')[2].value = input[54];
+                document.getElementsByClassName('square')[3].value = input[54];
+                document.getElementsByClassName('square')[4].value = input[54];
+                document.getElementsByClassName('square')[5].value = input[54];
+                document.getElementsByClassName('square')[6].value = input[54];
+                document.getElementsByClassName('square')[7].value = input[54];
+            }
+            else {
+                document.getElementsByClassName('square')[0].value = "*";
+                document.getElementsByClassName('square')[1].value = "*";
+                document.getElementsByClassName('square')[2].value = "*";
+                document.getElementsByClassName('square')[3].value = "*";
+                document.getElementsByClassName('square')[4].value = "*";
+                document.getElementsByClassName('square')[5].value = "*";
+                document.getElementsByClassName('square')[6].value = "*";
+                document.getElementsByClassName('square')[7].value = "*";
+            }
+            if (input[55] != null) {
+                document.getElementsByClassName('rJ')[0].value = input[55];
+            }
+            else {
+                document.getElementsByClassName('rJ')[0].value = "*";
+            }
+        });
+
+        $('.input2').on('keypress keyup blur', function (event) {
+            var input = document.getElementById('input2').value;
+            if (input[0] != null) {
+                document.getElementsByClassName('H2')[0].value = input[0];
+                document.getElementsByClassName('H2')[1].value = input[0];
+                document.getElementsByClassName('H2')[2].value = input[0];
+                document.getElementsByClassName('H2')[3].value = input[0];
+            }
+            else {
+                document.getElementsByClassName('H2')[0].value = "*";
+                document.getElementsByClassName('H2')[1].value = "*";
+                document.getElementsByClassName('H2')[2].value = "*";
+                document.getElementsByClassName('H2')[3].value = "*";
+            }
+            if (input[1] != null) {
+                document.getElementsByClassName('E2')[0].value = input[1];
+                document.getElementsByClassName('E2')[1].value = input[1];
+                document.getElementsByClassName('E2')[2].value = input[1];
+            }
+            else {
+                document.getElementsByClassName('E2')[0].value = "*";
+                document.getElementsByClassName('E2')[1].value = "*";
+                document.getElementsByClassName('E2')[2].value = "*";
+            }
+            if (input[2] != null) {
+                document.getElementsByClassName('R2')[0].value = input[2];
+                document.getElementsByClassName('R2')[1].value = input[2];
+                document.getElementsByClassName('R2')[2].value = input[2];
+                document.getElementsByClassName('R2')[3].value = input[2];
+                document.getElementsByClassName('R2')[4].value = input[2];
+                document.getElementsByClassName('R2')[5].value = input[2];
+                document.getElementsByClassName('R2')[6].value = input[2];
+                document.getElementsByClassName('R2')[7].value = input[2];
+            }
+            else {
+                document.getElementsByClassName('R2')[0].value = "*";
+                document.getElementsByClassName('R2')[1].value = "*";
+                document.getElementsByClassName('R2')[2].value = "*";
+                document.getElementsByClassName('R2')[3].value = "*";
+                document.getElementsByClassName('R2')[4].value = "*";
+                document.getElementsByClassName('R2')[5].value = "*";
+                document.getElementsByClassName('R2')[6].value = "*";
+                document.getElementsByClassName('R2')[7].value = "*";
+            }
+            if (input[3] != null) {
+                document.getElementsByClassName('rV2')[0].value = input[3];
+                document.getElementsByClassName('rV2')[1].value = input[3];
+                document.getElementsByClassName('rV2')[2].value = input[3];
+                document.getElementsByClassName('rV2')[3].value = input[3];
+            }
+            else {
+                document.getElementsByClassName('rV2')[0].value = "*";
+                document.getElementsByClassName('rV2')[1].value = "*";
+                document.getElementsByClassName('rV2')[2].value = "*";
+                document.getElementsByClassName('rV2')[3].value = "*";
+            }
+            if (input[4] != null) {
+                document.getElementsByClassName('q2')[0].value = input[4];
+                document.getElementsByClassName('q2')[1].value = input[4];
+                document.getElementsByClassName('q2')[2].value = input[4];
+                document.getElementsByClassName('q2')[3].value = input[4];
+                document.getElementsByClassName('q2')[4].value = input[4];
+                document.getElementsByClassName('q2')[5].value = input[4];
+                document.getElementsByClassName('q2')[6].value = input[4];
+                document.getElementsByClassName('q2')[7].value = input[4];
+                document.getElementsByClassName('q2')[8].value = input[4];
+                document.getElementsByClassName('q2')[9].value = input[4];
+                document.getElementsByClassName('q2')[10].value = input[4];
+            }
+            else {
+                document.getElementsByClassName('q2')[0].value = "*";
+                document.getElementsByClassName('q2')[1].value = "*";
+                document.getElementsByClassName('q2')[2].value = "*";
+                document.getElementsByClassName('q2')[3].value = "*";
+                document.getElementsByClassName('q2')[4].value = "*";
+                document.getElementsByClassName('q2')[5].value = "*";
+                document.getElementsByClassName('q2')[6].value = "*";
+                document.getElementsByClassName('q2')[7].value = "*";
+                document.getElementsByClassName('q2')[8].value = "*";
+                document.getElementsByClassName('q2')[9].value = "*";
+                document.getElementsByClassName('q2')[10].value = "*";
+            }
+            if (input[5] != null) {
+                document.getElementsByClassName('rL2')[0].value = input[5];
+                document.getElementsByClassName('rL2')[1].value = input[5];
+                document.getElementsByClassName('rL2')[2].value = input[5];
+                document.getElementsByClassName('rL2')[3].value = input[5];
+                document.getElementsByClassName('rL2')[4].value = input[5];
+                document.getElementsByClassName('rL2')[5].value = input[5];
+                document.getElementsByClassName('rL2')[6].value = input[5];
+            }
+            else {
+                document.getElementsByClassName('rL2')[0].value = "*";
+                document.getElementsByClassName('rL2')[1].value = "*";
+                document.getElementsByClassName('rL2')[2].value = "*";
+                document.getElementsByClassName('rL2')[3].value = "*";
+                document.getElementsByClassName('rL2')[4].value = "*";
+                document.getElementsByClassName('rL2')[5].value = "*";
+                document.getElementsByClassName('rL2')[6].value = "*";
+            }
+            if (input[6] != null) {
+                document.getElementsByClassName('fV2')[0].value = input[6];
+                document.getElementsByClassName('fV2')[1].value = input[6];
+                document.getElementsByClassName('fV2')[2].value = input[6];
+                document.getElementsByClassName('fV2')[3].value = input[6];
+                document.getElementsByClassName('fV2')[4].value = input[6];
+                document.getElementsByClassName('fV2')[5].value = input[6];
+            }
+            else {
+                document.getElementsByClassName('fV2')[0].value = "*";
+                document.getElementsByClassName('fV2')[1].value = "*";
+                document.getElementsByClassName('fV2')[2].value = "*";
+                document.getElementsByClassName('fV2')[3].value = "*";
+                document.getElementsByClassName('fV2')[4].value = "*";
+                document.getElementsByClassName('fV2')[5].value = "*";
+            }
+            if (input[7] != null) {
+                document.getElementsByClassName('V2')[0].value = input[7];
+                document.getElementsByClassName('V2')[1].value = input[7];
+                document.getElementsByClassName('V2')[2].value = input[7];
+                document.getElementsByClassName('V2')[3].value = input[7];
+                document.getElementsByClassName('V2')[4].value = input[7];
+                document.getElementsByClassName('V2')[5].value = input[7];
+            }
+            else {
+                document.getElementsByClassName('V2')[0].value = "*";
+                document.getElementsByClassName('V2')[1].value = "*";
+                document.getElementsByClassName('V2')[2].value = "*";
+                document.getElementsByClassName('V2')[3].value = "*";
+                document.getElementsByClassName('V2')[4].value = "*";
+                document.getElementsByClassName('V2')[5].value = "*";
+            }
+            if (input[8] != null) {
+                document.getElementsByClassName('P2')[0].value = input[8];
+                document.getElementsByClassName('P2')[1].value = input[8];
+                document.getElementsByClassName('P2')[2].value = input[8];
+            }
+            else {
+                document.getElementsByClassName('P2')[0].value = "*";
+                document.getElementsByClassName('P2')[1].value = "*";
+                document.getElementsByClassName('P2')[2].value = "*";
+            }
+            if (input[9] != null) {
+                document.getElementsByClassName('rK2')[0].value = input[9];
+                document.getElementsByClassName('rK2')[1].value = input[9];
+                document.getElementsByClassName('rK2')[2].value = input[9];
+                document.getElementsByClassName('rK2')[3].value = input[9];
+                document.getElementsByClassName('rK2')[4].value = input[9];
+            }
+            else {
+                document.getElementsByClassName('rK2')[0].value = "*";
+                document.getElementsByClassName('rK2')[1].value = "*";
+                document.getElementsByClassName('rK2')[2].value = "*";
+                document.getElementsByClassName('rK2')[3].value = "*";
+                document.getElementsByClassName('rK2')[4].value = "*";
+            }
+            if (input[10] != null) {
+                document.getElementsByClassName('l2')[0].value = input[10];
+                document.getElementsByClassName('l2')[1].value = input[10];
+                document.getElementsByClassName('l2')[2].value = input[10];
+                document.getElementsByClassName('l2')[3].value = input[10];
+                document.getElementsByClassName('l2')[4].value = input[10];
+                document.getElementsByClassName('l2')[5].value = input[10];
+                document.getElementsByClassName('l2')[6].value = input[10];
+                document.getElementsByClassName('l2')[7].value = input[10];
+                document.getElementsByClassName('l2')[8].value = input[10];
+                document.getElementsByClassName('l2')[9].value = input[10];
+            }
+            else {
+                document.getElementsByClassName('l2')[0].value = "*";
+                document.getElementsByClassName('l2')[1].value = "*";
+                document.getElementsByClassName('l2')[2].value = "*";
+                document.getElementsByClassName('l2')[3].value = "*";
+                document.getElementsByClassName('l2')[4].value = "*";
+                document.getElementsByClassName('l2')[5].value = "*";
+                document.getElementsByClassName('l2')[6].value = "*";
+                document.getElementsByClassName('l2')[7].value = "*";
+                document.getElementsByClassName('l2')[8].value = "*";
+                document.getElementsByClassName('l2')[9].value = "*";
+            }
+            if (input[11] != null) {
+                document.getElementsByClassName('usC2')[0].value = input[11];
+                document.getElementsByClassName('usC2')[1].value = input[11];
+                document.getElementsByClassName('usC2')[2].value = input[11];
+            }
+            else {
+                document.getElementsByClassName('usC2')[0].value = "*";
+                document.getElementsByClassName('usC2')[1].value = "*";
+                document.getElementsByClassName('usC2')[2].value = "*";
+            }
+            if (input[12] != null) {
+                document.getElementsByClassName('L2')[0].value = input[12];
+                document.getElementsByClassName('L2')[1].value = input[12];
+                document.getElementsByClassName('L2')[2].value = input[12];
+                document.getElementsByClassName('L2')[3].value = input[12];
+                document.getElementsByClassName('L2')[4].value = input[12];
+                document.getElementsByClassName('L2')[5].value = input[12];
+            }
+            else {
+                document.getElementsByClassName('L2')[0].value = "*";
+                document.getElementsByClassName('L2')[1].value = "*";
+                document.getElementsByClassName('L2')[2].value = "*";
+                document.getElementsByClassName('L2')[3].value = "*";
+                document.getElementsByClassName('L2')[4].value = "*";
+                document.getElementsByClassName('L2')[5].value = "*";
+            }
+            if (input[13] != null) {
+                document.getElementsByClassName('T2')[0].value = input[13];
+                document.getElementsByClassName('T2')[1].value = input[13];
+                document.getElementsByClassName('T2')[2].value = input[13];
+                document.getElementsByClassName('T2')[3].value = input[13];
+                document.getElementsByClassName('T2')[4].value = input[13];
+            }
+            else {
+                document.getElementsByClassName('T2')[0].value = "*";
+                document.getElementsByClassName('T2')[1].value = "*";
+                document.getElementsByClassName('T2')[2].value = "*";
+                document.getElementsByClassName('T2')[3].value = "*";
+                document.getElementsByClassName('T2')[4].value = "*";
+            }
+            if (input[14] != null) {
+                document.getElementsByClassName('G2')[0].value = input[14];
+                document.getElementsByClassName('G2')[1].value = input[14];
+                document.getElementsByClassName('G2')[2].value = input[14];
+                document.getElementsByClassName('G2')[3].value = input[14];
+                document.getElementsByClassName('G2')[4].value = input[14];
+                document.getElementsByClassName('G2')[5].value = input[14];
+            }
+            else {
+                document.getElementsByClassName('G2')[0].value = "*";
+                document.getElementsByClassName('G2')[1].value = "*";
+                document.getElementsByClassName('G2')[2].value = "*";
+                document.getElementsByClassName('G2')[3].value = "*";
+                document.getElementsByClassName('G2')[4].value = "*";
+                document.getElementsByClassName('G2')[5].value = "*";
+            }
+            if (input[15] != null) {
+                document.getElementsByClassName('bsC2')[0].value = input[15];
+                document.getElementsByClassName('bsC2')[1].value = input[15];
+                document.getElementsByClassName('bsC2')[2].value = input[15];
+                document.getElementsByClassName('bsC2')[3].value = input[15];
+                document.getElementsByClassName('bsC2')[4].value = input[15];
+                document.getElementsByClassName('bsC2')[5].value = input[15];
+                document.getElementsByClassName('bsC2')[6].value = input[15];
+                document.getElementsByClassName('bsC2')[7].value = input[15];
+                document.getElementsByClassName('bsC2')[8].value = input[15];
+            }
+            else {
+                document.getElementsByClassName('bsC2')[0].value = "*";
+                document.getElementsByClassName('bsC2')[1].value = "*";
+                document.getElementsByClassName('bsC2')[2].value = "*";
+                document.getElementsByClassName('bsC2')[3].value = "*";
+                document.getElementsByClassName('bsC2')[4].value = "*";
+                document.getElementsByClassName('bsC2')[5].value = "*";
+                document.getElementsByClassName('bsC2')[6].value = "*";
+                document.getElementsByClassName('bsC2')[7].value = "*";
+                document.getElementsByClassName('bsC2')[8].value = "*";
+            }
+            if (input[16] != null) {
+                document.getElementsByClassName('rD2')[0].value = input[16];
+                document.getElementsByClassName('rD2')[1].value = input[16];
+                document.getElementsByClassName('rD2')[2].value = input[16];
+                document.getElementsByClassName('rD2')[3].value = input[16];
+                document.getElementsByClassName('rD2')[4].value = input[16];
+            }
+            else {
+                document.getElementsByClassName('rD2')[0].value = "*";
+                document.getElementsByClassName('rD2')[1].value = "*";
+                document.getElementsByClassName('rD2')[2].value = "*";
+                document.getElementsByClassName('rD2')[3].value = "*";
+                document.getElementsByClassName('rD2')[4].value = "*";
+            }
+            if (input[17] != null) {
+                document.getElementsByClassName('N2')[0].value = input[17];
+                document.getElementsByClassName('N2')[1].value = input[17];
+                document.getElementsByClassName('N2')[2].value = input[17];
+                document.getElementsByClassName('N2')[3].value = input[17];
+                document.getElementsByClassName('N2')[4].value = input[17];
+            }
+            else {
+                document.getElementsByClassName('N2')[0].value = "*";
+                document.getElementsByClassName('N2')[1].value = "*";
+                document.getElementsByClassName('N2')[2].value = "*";
+                document.getElementsByClassName('N2')[3].value = "*";
+                document.getElementsByClassName('N2')[4].value = "*";
+            }
+            if (input[18] != null) {
+                document.getElementsByClassName('plus2')[0].value = input[18];
+                document.getElementsByClassName('plus2')[1].value = input[18];
+                document.getElementsByClassName('plus2')[2].value = input[18];
+                document.getElementsByClassName('plus2')[3].value = input[18];
+                document.getElementsByClassName('plus2')[4].value = input[18];
+                document.getElementsByClassName('plus2')[5].value = input[18];
+                document.getElementsByClassName('plus2')[6].value = input[18];
+                document.getElementsByClassName('plus2')[7].value = input[18];
+                document.getElementsByClassName('plus2')[8].value = input[18];
+                document.getElementsByClassName('plus2')[9].value = input[18];
+                document.getElementsByClassName('plus2')[10].value = input[18];
+                document.getElementsByClassName('plus2')[11].value = input[18];
+                document.getElementsByClassName('plus2')[12].value = input[18];
+                document.getElementsByClassName('plus2')[13].value = input[18];
+                document.getElementsByClassName('plus2')[14].value = input[18];
+                document.getElementsByClassName('plus2')[15].value = input[18];
+                document.getElementsByClassName('plus2')[16].value = input[18];
+                document.getElementsByClassName('plus2')[17].value = input[18];
+                document.getElementsByClassName('plus2')[18].value = input[18];
+                document.getElementsByClassName('plus2')[19].value = input[18];
+                document.getElementsByClassName('plus2')[20].value = input[18];
+                document.getElementsByClassName('plus2')[21].value = input[18];
+                document.getElementsByClassName('plus2')[22].value = input[18];
+                document.getElementsByClassName('plus2')[23].value = input[18];
+            }
+            else {
+                document.getElementsByClassName('plus2')[0].value = "*";
+                document.getElementsByClassName('plus2')[1].value = "*";
+                document.getElementsByClassName('plus2')[2].value = "*";
+                document.getElementsByClassName('plus2')[3].value = "*";
+                document.getElementsByClassName('plus2')[4].value = "*";
+                document.getElementsByClassName('plus2')[5].value = "*";
+                document.getElementsByClassName('plus2')[6].value = "*";
+                document.getElementsByClassName('plus2')[7].value = "*";
+                document.getElementsByClassName('plus2')[8].value = "*";
+                document.getElementsByClassName('plus2')[9].value = "*";
+                document.getElementsByClassName('plus2')[10].value = "*";
+                document.getElementsByClassName('plus2')[11].value = "*";
+                document.getElementsByClassName('plus2')[12].value = "*";
+                document.getElementsByClassName('plus2')[13].value = "*";
+                document.getElementsByClassName('plus2')[14].value = "*";
+                document.getElementsByClassName('plus2')[15].value = "*";
+                document.getElementsByClassName('plus2')[16].value = "*";
+                document.getElementsByClassName('plus2')[17].value = "*";
+                document.getElementsByClassName('plus2')[18].value = "*";
+                document.getElementsByClassName('plus2')[19].value = "*";
+                document.getElementsByClassName('plus2')[20].value = "*";
+                document.getElementsByClassName('plus2')[21].value = "*";
+                document.getElementsByClassName('plus2')[22].value = "*";
+                document.getElementsByClassName('plus2')[23].value = "*";
+            }
+            if (input[19] != null) {
+                document.getElementsByClassName('B2')[0].value = input[19];
+                document.getElementsByClassName('B2')[1].value = input[19];
+                document.getElementsByClassName('B2')[2].value = input[19];
+                document.getElementsByClassName('B2')[3].value = input[19];
+                document.getElementsByClassName('B2')[4].value = input[19];
+                document.getElementsByClassName('B2')[5].value = input[19];
+                document.getElementsByClassName('B2')[6].value = input[19];
+                document.getElementsByClassName('B2')[7].value = input[19];
+                document.getElementsByClassName('B2')[8].value = input[19];
+                document.getElementsByClassName('B2')[9].value = input[19];
+                document.getElementsByClassName('B2')[10].value = input[19];
+                document.getElementsByClassName('B2')[11].value = input[19];
+            }
+            else {
+                document.getElementsByClassName('B2')[0].value = "*";
+                document.getElementsByClassName('B2')[1].value = "*";
+                document.getElementsByClassName('B2')[2].value = "*";
+                document.getElementsByClassName('B2')[3].value = "*";
+                document.getElementsByClassName('B2')[4].value = "*";
+                document.getElementsByClassName('B2')[5].value = "*";
+                document.getElementsByClassName('B2')[6].value = "*";
+                document.getElementsByClassName('B2')[7].value = "*";
+                document.getElementsByClassName('B2')[8].value = "*";
+                document.getElementsByClassName('B2')[9].value = "*";
+                document.getElementsByClassName('B2')[10].value = "*";
+                document.getElementsByClassName('B2')[11].value = "*";
+            }
+            if (input[20] != null) {
+                document.getElementsByClassName('vlo2')[0].value = input[20];
+                document.getElementsByClassName('vlo2')[1].value = input[20];
+                document.getElementsByClassName('vlo2')[2].value = input[20];
+                document.getElementsByClassName('vlo2')[3].value = input[20];
+                document.getElementsByClassName('vlo2')[4].value = input[20];
+                document.getElementsByClassName('vlo2')[5].value = input[20];
+                document.getElementsByClassName('vlo2')[6].value = input[20];
+            }
+            else {
+                document.getElementsByClassName('vlo2')[0].value = "*";
+                document.getElementsByClassName('vlo2')[1].value = "*";
+                document.getElementsByClassName('vlo2')[2].value = "*";
+                document.getElementsByClassName('vlo2')[3].value = "*";
+                document.getElementsByClassName('vlo2')[4].value = "*";
+                document.getElementsByClassName('vlo2')[5].value = "*";
+                document.getElementsByClassName('vlo2')[6].value = "*";
+            }
+            if (input[21] != null) {
+                document.getElementsByClassName('fsquare2')[0].value = input[21];
+                document.getElementsByClassName('fsquare2')[1].value = input[21];
+                document.getElementsByClassName('fsquare2')[2].value = input[21];
+                document.getElementsByClassName('fsquare2')[3].value = input[21];
+                document.getElementsByClassName('fsquare2')[4].value = input[21];
+            }
+            else {
+                document.getElementsByClassName('fsquare2')[0].value = "*";
+                document.getElementsByClassName('fsquare2')[1].value = "*";
+                document.getElementsByClassName('fsquare2')[2].value = "*";
+                document.getElementsByClassName('fsquare2')[3].value = "*";
+                document.getElementsByClassName('fsquare2')[4].value = "*";
+            }
+            if (input[22] != null) {
+                document.getElementsByClassName('O2')[0].value = input[22];
+                document.getElementsByClassName('O2')[1].value = input[22];
+                document.getElementsByClassName('O2')[2].value = input[22];
+                document.getElementsByClassName('O2')[3].value = input[22];
+                document.getElementsByClassName('O2')[4].value = input[22];
+                document.getElementsByClassName('O2')[5].value = input[22];
+                document.getElementsByClassName('O2')[6].value = input[22];
+                document.getElementsByClassName('O2')[7].value = input[22];
+                document.getElementsByClassName('O2')[8].value = input[22];
+                document.getElementsByClassName('O2')[9].value = input[22];
+            }
+            else {
+                document.getElementsByClassName('O2')[0].value = "*";
+                document.getElementsByClassName('O2')[1].value = "*";
+                document.getElementsByClassName('O2')[2].value = "*";
+                document.getElementsByClassName('O2')[3].value = "*";
+                document.getElementsByClassName('O2')[4].value = "*";
+                document.getElementsByClassName('O2')[5].value = "*";
+                document.getElementsByClassName('O2')[6].value = "*";
+                document.getElementsByClassName('O2')[7].value = "*";
+                document.getElementsByClassName('O2')[8].value = "*";
+                document.getElementsByClassName('O2')[9].value = "*";
+            }
+            if (input[23] != null) {
+                document.getElementsByClassName('ltssquare2')[0].value = input[23];
+                document.getElementsByClassName('ltssquare2')[1].value = input[23];
+            }
+            else {
+                document.getElementsByClassName('ltssquare2')[0].value = "*";
+                document.getElementsByClassName('ltssquare2')[1].value = "*";
+            }
+            if (input[24] != null) {
+                document.getElementsByClassName('D2')[0].value = input[24];
+                document.getElementsByClassName('D2')[1].value = input[24];
+                document.getElementsByClassName('D2')[2].value = input[24];
+                document.getElementsByClassName('D2')[3].value = input[24];
+            }
+            else {
+                document.getElementsByClassName('D2')[0].value = "*";
+                document.getElementsByClassName('D2')[1].value = "*";
+                document.getElementsByClassName('D2')[2].value = "*";
+                document.getElementsByClassName('D2')[3].value = "*";
+            }
+            if (input[25] != null) {
+                document.getElementsByClassName('W2')[0].value = input[25];
+                document.getElementsByClassName('W2')[1].value = input[25];
+                document.getElementsByClassName('W2')[2].value = input[25];
+                document.getElementsByClassName('W2')[3].value = input[25];
+                document.getElementsByClassName('W2')[4].value = input[25];
+                document.getElementsByClassName('W2')[5].value = input[25];
+            }
+            else {
+                document.getElementsByClassName('W2')[0].value = "*";
+                document.getElementsByClassName('W2')[1].value = "*";
+                document.getElementsByClassName('W2')[2].value = "*";
+                document.getElementsByClassName('W2')[3].value = "*";
+                document.getElementsByClassName('W2')[4].value = "*";
+                document.getElementsByClassName('W2')[5].value = "*";
+            }
+            if (input[26] != null) {
+                document.getElementsByClassName('Y2')[0].value = input[26];
+                document.getElementsByClassName('Y2')[1].value = input[26];
+                document.getElementsByClassName('Y2')[2].value = input[26];
+                document.getElementsByClassName('Y2')[3].value = input[26];
+            }
+            else {
+                document.getElementsByClassName('Y2')[0].value = "*";
+                document.getElementsByClassName('Y2')[1].value = "*";
+                document.getElementsByClassName('Y2')[2].value = "*";
+                document.getElementsByClassName('Y2')[3].value = "*";
+            }
+            if (input[27] != null) {
+                document.getElementsByClassName('dot2')[0].value = input[27];
+                document.getElementsByClassName('dot2')[1].value = input[27];
+                document.getElementsByClassName('dot2')[2].value = input[27];
+                document.getElementsByClassName('dot2')[3].value = input[27];
+                document.getElementsByClassName('dot2')[4].value = input[27];
+                document.getElementsByClassName('dot2')[5].value = input[27];
+            }
+            else {
+                document.getElementsByClassName('dot2')[0].value = "*";
+                document.getElementsByClassName('dot2')[1].value = "*";
+                document.getElementsByClassName('dot2')[2].value = "*";
+                document.getElementsByClassName('dot2')[3].value = "*";
+                document.getElementsByClassName('dot2')[4].value = "*";
+                document.getElementsByClassName('dot2')[5].value = "*";
+            }
+            if (input[28] != null) {
+                document.getElementsByClassName('lV2')[0].value = input[28];
+                document.getElementsByClassName('lV2')[1].value = input[28];
+                document.getElementsByClassName('lV2')[2].value = input[28];
+                document.getElementsByClassName('lV2')[3].value = input[28];
+                document.getElementsByClassName('lV2')[4].value = input[28];
+                document.getElementsByClassName('lV2')[5].value = input[28];
+            }
+            else {
+                document.getElementsByClassName('lV2')[0].value = "*";
+                document.getElementsByClassName('lV2')[1].value = "*";
+                document.getElementsByClassName('lV2')[2].value = "*";
+                document.getElementsByClassName('lV2')[3].value = "*";
+                document.getElementsByClassName('lV2')[4].value = "*";
+                document.getElementsByClassName('lV2')[5].value = "*";
+            }
+            if (input[29] != null) {
+                document.getElementsByClassName('rtssquare2')[0].value = input[29];
+                document.getElementsByClassName('rtssquare2')[1].value = input[29];
+                document.getElementsByClassName('rtssquare2')[2].value = input[29];
+                document.getElementsByClassName('rtssquare2')[3].value = input[29];
+                document.getElementsByClassName('rtssquare2')[4].value = input[29];
+                document.getElementsByClassName('rtssquare2')[5].value = input[29];
+            }
+            else {
+                document.getElementsByClassName('rtssquare2')[0].value = "*";
+                document.getElementsByClassName('rtssquare2')[1].value = "*";
+                document.getElementsByClassName('rtssquare2')[2].value = "*";
+                document.getElementsByClassName('rtssquare2')[3].value = "*";
+                document.getElementsByClassName('rtssquare2')[4].value = "*";
+                document.getElementsByClassName('rtssquare2')[5].value = "*";
+            }
+            if (input[30] != null) {
+                document.getElementsByClassName('K2')[0].value = input[30];
+                document.getElementsByClassName('K2')[1].value = input[30];
+                document.getElementsByClassName('K2')[2].value = input[30];
+                document.getElementsByClassName('K2')[3].value = input[30];
+                document.getElementsByClassName('K2')[4].value = input[30];
+                document.getElementsByClassName('K2')[5].value = input[30];
+                document.getElementsByClassName('K2')[6].value = input[30];
+            }
+            else {
+                document.getElementsByClassName('K2')[0].value = "*";
+                document.getElementsByClassName('K2')[1].value = "*";
+                document.getElementsByClassName('K2')[2].value = "*";
+                document.getElementsByClassName('K2')[3].value = "*";
+                document.getElementsByClassName('K2')[4].value = "*";
+                document.getElementsByClassName('K2')[5].value = "*";
+                document.getElementsByClassName('K2')[6].value = "*";
+            }
+            if (input[31] != null) {
+                document.getElementsByClassName('rF2')[0].value = input[31];
+                document.getElementsByClassName('rF2')[1].value = input[31];
+                document.getElementsByClassName('rF2')[2].value = input[31];
+                document.getElementsByClassName('rF2')[3].value = input[31];
+            }
+            else {
+                document.getElementsByClassName('rF2')[0].value = "*";
+                document.getElementsByClassName('rF2')[1].value = "*";
+                document.getElementsByClassName('rF2')[2].value = "*";
+                document.getElementsByClassName('rF2')[3].value = "*";
+            }
+            if (input[32] != null) {
+                document.getElementsByClassName('hlo2')[0].value = input[32];
+                document.getElementsByClassName('hlo2')[1].value = input[32];
+                document.getElementsByClassName('hlo2')[2].value = input[32];
+                document.getElementsByClassName('hlo2')[3].value = input[32];
+                document.getElementsByClassName('hlo2')[4].value = input[32];
+            }
+            else {
+                document.getElementsByClassName('hlo2')[0].value = "*";
+                document.getElementsByClassName('hlo2')[1].value = "*";
+                document.getElementsByClassName('hlo2')[2].value = "*";
+                document.getElementsByClassName('hlo2')[3].value = "*";
+                document.getElementsByClassName('hlo2')[4].value = "*";
+            }
+            if (input[33] != null) {
+                document.getElementsByClassName('rY2')[0].value = input[33];
+                document.getElementsByClassName('rY2')[1].value = input[33];
+                document.getElementsByClassName('rY2')[2].value = input[33];
+                document.getElementsByClassName('rY2')[3].value = input[33];
+                document.getElementsByClassName('rY2')[4].value = input[33];
+            }
+            else {
+                document.getElementsByClassName('rY2')[0].value = "*";
+                document.getElementsByClassName('rY2')[1].value = "*";
+                document.getElementsByClassName('rY2')[2].value = "*";
+                document.getElementsByClassName('rY2')[3].value = "*";
+                document.getElementsByClassName('rY2')[4].value = "*";
+            }
+            if (input[34] != null) {
+                document.getElementsByClassName('ijrdot2')[0].value = input[34];
+                document.getElementsByClassName('ijrdot2')[1].value = input[34];
+            }
+            else {
+                document.getElementsByClassName('ijrdot2')[0].value = "*";
+                document.getElementsByClassName('ijrdot2')[1].value = "*";
+            }
+            if (input[35] != null) {
+                document.getElementsByClassName('rC2')[0].value = input[35];
+                document.getElementsByClassName('rC2')[1].value = input[35];
+                document.getElementsByClassName('rC2')[2].value = input[35];
+                document.getElementsByClassName('rC2')[3].value = input[35];
+                document.getElementsByClassName('rC2')[4].value = input[35];
+                document.getElementsByClassName('rC2')[5].value = input[35];
+                document.getElementsByClassName('rC2')[6].value = input[35];
+                document.getElementsByClassName('rC2')[7].value = input[35];
+                document.getElementsByClassName('rC2')[8].value = input[35];
+                document.getElementsByClassName('rC2')[9].value = input[35];
+            }
+            else {
+                document.getElementsByClassName('rC2')[0].value = "*";
+                document.getElementsByClassName('rC2')[1].value = "*";
+                document.getElementsByClassName('rC2')[2].value = "*";
+                document.getElementsByClassName('rC2')[3].value = "*";
+                document.getElementsByClassName('rC2')[4].value = "*";
+                document.getElementsByClassName('rC2')[5].value = "*";
+                document.getElementsByClassName('rC2')[6].value = "*";
+                document.getElementsByClassName('rC2')[7].value = "*";
+                document.getElementsByClassName('rC2')[8].value = "*";
+                document.getElementsByClassName('rC2')[9].value = "*";
+            }
+            if (input[36] != null) {
+                document.getElementsByClassName('M2')[0].value = input[36];
+                document.getElementsByClassName('M2')[1].value = input[36];
+                document.getElementsByClassName('M2')[2].value = input[36];
+                document.getElementsByClassName('M2')[3].value = input[36];
+                document.getElementsByClassName('M2')[4].value = input[36];
+                document.getElementsByClassName('M2')[5].value = input[36];
+                document.getElementsByClassName('M2')[6].value = input[36];
+            }
+            else {
+                document.getElementsByClassName('M2')[0].value = "*";
+                document.getElementsByClassName('M2')[1].value = "*";
+                document.getElementsByClassName('M2')[2].value = "*";
+                document.getElementsByClassName('M2')[3].value = "*";
+                document.getElementsByClassName('M2')[4].value = "*";
+                document.getElementsByClassName('M2')[5].value = "*";
+                document.getElementsByClassName('M2')[6].value = "*";
+            }
+            if (input[37] != null) {
+                document.getElementsByClassName('u2')[0].value = input[37];
+                document.getElementsByClassName('u2')[1].value = input[37];
+                document.getElementsByClassName('u2')[2].value = input[37];
+                document.getElementsByClassName('u2')[3].value = input[37];
+                document.getElementsByClassName('u2')[4].value = input[37];
+            }
+            else {
+                document.getElementsByClassName('u2')[0].value = "*";
+                document.getElementsByClassName('u2')[1].value = "*";
+                document.getElementsByClassName('u2')[2].value = "*";
+                document.getElementsByClassName('u2')[3].value = "*";
+                document.getElementsByClassName('u2')[4].value = "*";
+            }
+            if (input[38] != null) {
+                document.getElementsByClassName('Z2')[0].value = input[38];
+                document.getElementsByClassName('Z2')[1].value = input[38];
+                document.getElementsByClassName('Z2')[2].value = input[38];
+                document.getElementsByClassName('Z2')[3].value = input[38];
+            }
+            else {
+                document.getElementsByClassName('Z2')[0].value = "*";
+                document.getElementsByClassName('Z2')[1].value = "*";
+                document.getElementsByClassName('Z2')[2].value = "*";
+                document.getElementsByClassName('Z2')[3].value = "*";
+            }
+            if (input[39] != null) {
+                document.getElementsByClassName('zodiac2')[0].value = input[39];
+                document.getElementsByClassName('zodiac2')[1].value = input[39];
+                document.getElementsByClassName('zodiac2')[2].value = input[39];
+                document.getElementsByClassName('zodiac2')[3].value = input[39];
+                document.getElementsByClassName('zodiac2')[4].value = input[39];
+                document.getElementsByClassName('zodiac2')[5].value = input[39];
+                document.getElementsByClassName('zodiac2')[6].value = input[39];
+                document.getElementsByClassName('zodiac2')[7].value = input[39];
+                document.getElementsByClassName('zodiac2')[8].value = input[39];
+            }
+            else {
+                document.getElementsByClassName('zodiac2')[0].value = "*";
+                document.getElementsByClassName('zodiac2')[1].value = "*";
+                document.getElementsByClassName('zodiac2')[2].value = "*";
+                document.getElementsByClassName('zodiac2')[3].value = "*";
+                document.getElementsByClassName('zodiac2')[4].value = "*";
+                document.getElementsByClassName('zodiac2')[5].value = "*";
+                document.getElementsByClassName('zodiac2')[6].value = "*";
+                document.getElementsByClassName('zodiac2')[7].value = "*";
+                document.getElementsByClassName('zodiac2')[8].value = "*";
+            }
+            if (input[40] != null) {
+                document.getElementsByClassName('J2')[0].value = input[40];
+                document.getElementsByClassName('J2')[1].value = input[40];
+                document.getElementsByClassName('J2')[2].value = input[40];
+                document.getElementsByClassName('J2')[3].value = input[40];
+            }
+            else {
+                document.getElementsByClassName('J2')[0].value = "*";
+                document.getElementsByClassName('J2')[1].value = "*";
+                document.getElementsByClassName('J2')[2].value = "*";
+                document.getElementsByClassName('J2')[3].value = "*";
+            }
+            if (input[41] != null) {
+                document.getElementsByClassName('S2')[0].value = input[41];
+                document.getElementsByClassName('S2')[1].value = input[41];
+                document.getElementsByClassName('S2')[2].value = input[41];
+                document.getElementsByClassName('S2')[3].value = input[41];
+            }
+            else {
+                document.getElementsByClassName('S2')[0].value = "*";
+                document.getElementsByClassName('S2')[1].value = "*";
+                document.getElementsByClassName('S2')[2].value = "*";
+                document.getElementsByClassName('S2')[3].value = "*";
+            }
+            if (input[42] != null) {
+                document.getElementsByClassName('triangledot2')[0].value = input[42];
+                document.getElementsByClassName('triangledot2')[1].value = input[42];
+                document.getElementsByClassName('triangledot2')[2].value = input[42];
+            }
+            else {
+                document.getElementsByClassName('triangledot2')[0].value = "*";
+                document.getElementsByClassName('triangledot2')[1].value = "*";
+                document.getElementsByClassName('triangledot2')[2].value = "*";
+            }
+            if (input[43] != null) {
+                document.getElementsByClassName('ftriangle2')[0].value = input[43];
+                document.getElementsByClassName('ftriangle2')[1].value = input[43];
+                document.getElementsByClassName('ftriangle2')[2].value = input[43];
+                document.getElementsByClassName('ftriangle2')[3].value = input[43];
+            }
+            else {
+                document.getElementsByClassName('ftriangle2')[0].value = "*";
+                document.getElementsByClassName('ftriangle2')[1].value = "*";
+                document.getElementsByClassName('ftriangle2')[2].value = "*";
+                document.getElementsByClassName('ftriangle2')[3].value = "*";
+            }
+            if (input[44] != null) {
+                document.getElementsByClassName('lsC2')[0].value = input[44];
+                document.getElementsByClassName('lsC2')[1].value = input[44];
+            }
+            else {
+                document.getElementsByClassName('lsC2')[0].value = "*";
+                document.getElementsByClassName('lsC2')[1].value = "*";
+            }
+            if (input[45] != null) {
+                document.getElementsByClassName('square2')[0].value = input[45];
+                document.getElementsByClassName('square2')[1].value = input[45];
+                document.getElementsByClassName('square2')[2].value = input[45];
+            }
+            else {
+                document.getElementsByClassName('square2')[0].value = "*";
+                document.getElementsByClassName('square2')[1].value = "*";
+                document.getElementsByClassName('square2')[2].value = "*";
+            }
+            if (input[46] != null) {
+                document.getElementsByClassName('triangle2')[0].value = input[46];
+                document.getElementsByClassName('triangle2')[1].value = input[46];
+                document.getElementsByClassName('triangle2')[2].value = input[46];
+                document.getElementsByClassName('triangle2')[3].value = input[46];
+            }
+            else {
+                document.getElementsByClassName('triangle2')[0].value = "*";
+                document.getElementsByClassName('triangle2')[1].value = "*";
+                document.getElementsByClassName('triangle2')[2].value = "*";
+                document.getElementsByClassName('triangle2')[3].value = "*";
+            }
+            if (input[47] != null) {
+                document.getElementsByClassName('fT2')[0].value = input[47];
+                document.getElementsByClassName('fT2')[1].value = input[47];
+                document.getElementsByClassName('fT2')[2].value = input[47];
+                document.getElementsByClassName('fT2')[3].value = input[47];
+            }
+            else {
+                document.getElementsByClassName('fT2')[0].value = "*";
+                document.getElementsByClassName('fT2')[1].value = "*";
+                document.getElementsByClassName('fT2')[2].value = "*";
+                document.getElementsByClassName('fT2')[3].value = "*";
+            }
+            if (input[48] != null) {
+                document.getElementsByClassName('tj2')[0].value = input[48];
+                document.getElementsByClassName('tj2')[1].value = input[48];
+            }
+            else {
+                document.getElementsByClassName('tj2')[0].value = "*";
+                document.getElementsByClassName('tj2')[1].value = "*";
+            }
+            if (input[49] != null) {
+                document.getElementsByClassName('fcircle2')[0].value = input[49];
+                document.getElementsByClassName('fcircle2')[1].value = input[49];
+                document.getElementsByClassName('fcircle2')[2].value = input[49];
+                document.getElementsByClassName('fcircle2')[3].value = input[49];
+                document.getElementsByClassName('fcircle2')[4].value = input[49];
+                document.getElementsByClassName('fcircle2')[5].value = input[49];
+                document.getElementsByClassName('fcircle2')[6].value = input[49];
+            }
+            else {
+                document.getElementsByClassName('fcircle2')[0].value = "*";
+                document.getElementsByClassName('fcircle2')[1].value = "*";
+                document.getElementsByClassName('fcircle2')[2].value = "*";
+                document.getElementsByClassName('fcircle2')[3].value = "*";
+                document.getElementsByClassName('fcircle2')[4].value = "*";
+                document.getElementsByClassName('fcircle2')[5].value = "*";
+                document.getElementsByClassName('fcircle2')[6].value = "*";
+            }
+            if (input[50] != null) {
+                document.getElementsByClassName('F2')[0].value = input[50];
+                document.getElementsByClassName('F2')[1].value = input[50];
+                document.getElementsByClassName('F2')[2].value = input[50];
+                document.getElementsByClassName('F2')[3].value = input[50];
+                document.getElementsByClassName('F2')[4].value = input[50];
+                document.getElementsByClassName('F2')[5].value = input[50];
+                document.getElementsByClassName('F2')[6].value = input[50];
+                document.getElementsByClassName('F2')[7].value = input[50];
+                document.getElementsByClassName('F2')[8].value = input[50];
+                document.getElementsByClassName('F2')[9].value = input[50];
+            }
+            else {
+                document.getElementsByClassName('F2')[0].value = "*";
+                document.getElementsByClassName('F2')[1].value = "*";
+                document.getElementsByClassName('F2')[2].value = "*";
+                document.getElementsByClassName('F2')[3].value = "*";
+                document.getElementsByClassName('F2')[4].value = "*";
+                document.getElementsByClassName('F2')[5].value = "*";
+                document.getElementsByClassName('F2')[6].value = "*";
+                document.getElementsByClassName('F2')[7].value = "*";
+                document.getElementsByClassName('F2')[8].value = "*";
+                document.getElementsByClassName('F2')[9].value = "*";
+            }
+            if (input[51] != null) {
+                document.getElementsByClassName('fP2')[0].value = input[51];
+                document.getElementsByClassName('fP2')[1].value = input[51];
+            }
+            else {
+                document.getElementsByClassName('fP2')[0].value = "*";
+                document.getElementsByClassName('fP2')[1].value = "*";
+            }
+            if (input[52] != null) {
+                document.getElementsByClassName('rsC2')[0].value = input[52];
+                document.getElementsByClassName('rsC2')[1].value = input[52];
+                document.getElementsByClassName('rsC2')[2].value = input[52];
+                document.getElementsByClassName('rsC2')[3].value = input[52];
+                document.getElementsByClassName('rsC2')[4].value = input[52];
+                document.getElementsByClassName('rsC2')[5].value = input[52];
+            }
+            else {
+                document.getElementsByClassName('rsC2')[0].value = "*";
+                document.getElementsByClassName('rsC2')[1].value = "*";
+                document.getElementsByClassName('rsC2')[2].value = "*";
+                document.getElementsByClassName('rsC2')[3].value = "*";
+                document.getElementsByClassName('rsC2')[4].value = "*";
+                document.getElementsByClassName('rsC2')[5].value = "*";
+            }
+            if (input[53] != null) {
+                document.getElementsByClassName('dash2')[0].value = input[53];
+                document.getElementsByClassName('dash2')[1].value = input[53];
+                document.getElementsByClassName('dash2')[2].value = input[53];
+            }
+            else {
+                document.getElementsByClassName('dash2')[0].value = "*";
+                document.getElementsByClassName('dash2')[1].value = "*";
+                document.getElementsByClassName('dash2')[2].value = "*";
+            }
+            if (input[54] != null) {
+                document.getElementsByClassName('line2')[0].value = input[54];
+                document.getElementsByClassName('line2')[1].value = input[54];
+                document.getElementsByClassName('line2')[2].value = input[54];
+                document.getElementsByClassName('line2')[3].value = input[54];
+                document.getElementsByClassName('line2')[4].value = input[54];
+            }
+            else {
+                document.getElementsByClassName('line2')[0].value = "*";
+                document.getElementsByClassName('line2')[1].value = "*";
+                document.getElementsByClassName('line2')[2].value = "*";
+                document.getElementsByClassName('line2')[3].value = "*";
+                document.getElementsByClassName('line2')[4].value = "*";
+            }
+            if (input[55] != null) {
+                document.getElementsByClassName('C2')[0].value = input[55];
+                document.getElementsByClassName('C2')[1].value = input[55];
+                document.getElementsByClassName('C2')[2].value = input[55];
+                document.getElementsByClassName('C2')[3].value = input[55];
+                document.getElementsByClassName('C2')[4].value = input[55];
+            }
+            else {
+                document.getElementsByClassName('C2')[0].value = "*";
+                document.getElementsByClassName('C2')[1].value = "*";
+                document.getElementsByClassName('C2')[2].value = "*";
+                document.getElementsByClassName('C2')[3].value = "*";
+                document.getElementsByClassName('C2')[4].value = "*";
+            }
+            if (input[56] != null) {
+                document.getElementsByClassName('rQ2')[0].value = input[56];
+                document.getElementsByClassName('rQ2')[1].value = input[56];
+            }
+            else {
+                document.getElementsByClassName('rQ2')[0].value = "*";
+                document.getElementsByClassName('rQ2')[1].value = "*";
+            }
+            if (input[57] != null) {
+                document.getElementsByClassName('ijldot2')[0].value = input[57];
+                document.getElementsByClassName('ijldot2')[1].value = input[57];
+                document.getElementsByClassName('ijldot2')[2].value = input[57];
+            }
+            else {
+                document.getElementsByClassName('ijldot2')[0].value = "*";
+                document.getElementsByClassName('ijldot2')[1].value = "*";
+                document.getElementsByClassName('ijldot2')[2].value = "*";
+            }
+            if (input[58] != null) {
+                document.getElementsByClassName('X2')[0].value = input[58];
+                document.getElementsByClassName('X2')[1].value = input[58];
+            }
+            else {
+                document.getElementsByClassName('X2')[0].value = "*";
+                document.getElementsByClassName('X2')[1].value = "*";
+            }
+            if (input[59] != null) {
+                document.getElementsByClassName('squaredot2')[0].value = input[59];
+            }
+            else {
+                document.getElementsByClassName('squaredot2')[0].value = "*";
+            }
+            if (input[60] != null) {
+                document.getElementsByClassName('rB2')[0].value = input[60];
+                document.getElementsByClassName('rB2')[1].value = input[60];
+                document.getElementsByClassName('rB2')[2].value = input[60];
+            }
+            else {
+                document.getElementsByClassName('rB2')[0].value = "*";
+                document.getElementsByClassName('rB2')[1].value = "*";
+                document.getElementsByClassName('rB2')[2].value = "*";
+            }
+            if (input[61] != null) {
+                document.getElementsByClassName('circledot2')[0].value = input[61];
+                document.getElementsByClassName('circledot2')[1].value = input[61];
+                document.getElementsByClassName('circledot2')[2].value = input[61];
+            }
+            else {
+                document.getElementsByClassName('circledot2')[0].value = "*";
+                document.getElementsByClassName('circledot2')[1].value = "*";
+                document.getElementsByClassName('circledot2')[2].value = "*";
+            }
+            if (input[62] != null){
+                document.getElementsByClassName('A2')[0].value = input[61];
+                document.getElementsByClassName('A2')[1].value = input[61];
+
+            }
+            else {
+                document.getElementsByClassName('A2')[0].value = "*";
+                document.getElementsByClassName('A2')[1].value = "*";
+
+            }
+
+
+        });
+    </script>
+
+</body>
+
+</html>
